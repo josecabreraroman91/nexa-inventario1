@@ -6,11 +6,10 @@
 <title>Nexa Inventario</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0f14;--surface:#151820;--surface2:#1c2030;--border:#252a3a;--accent:#00e5a0;--accent2:#0099ff;--danger:#ff4060;--warning:#ffb020;--text:#e8eaf0;--muted:#6b7290;--card:#161b28}
+:root{--bg:#0d0f14;--surface:#151820;--surface2:#1c2030;--border:#252a3a;--accent:#00e5a0;--accent2:#0099ff;--turq:#14c9c0;--danger:#ff4060;--warning:#ff7a3d;--green:#00e5a0;--text:#e8eaf0;--muted:#6b7290;--card:#161b28}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;height:100vh}
-/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:54px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;gap:10px}
 .logo{font-size:17px;font-weight:800;letter-spacing:-.5px;display:flex;align-items:center;gap:7px}
 .logo span{color:var(--accent)}
@@ -21,7 +20,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);displa
 .dot.syncing{background:var(--warning);animation:blink 1s infinite}
 .dot.error{background:var(--danger)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-/* LAYOUT */
 .layout{display:flex;flex:1;overflow:hidden}
 .sidebar{width:215px;background:var(--surface);border-right:1px solid var(--border);flex-shrink:0;padding:14px 0;display:flex;flex-direction:column}
 .nav-section{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--muted);padding:14px 18px 5px;text-transform:uppercase}
@@ -29,18 +27,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);displa
 .nav-item:hover{color:var(--text);background:rgba(255,255,255,.03)}
 .nav-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,229,160,.05)}
 .nav-icon{font-size:15px;width:18px;text-align:center}
-/* MAIN */
 .main{flex:1;overflow-y:auto;padding:22px;display:none}
 .main.active{display:block}
 .page-title{font-size:21px;font-weight:800;margin-bottom:3px}
 .page-sub{font-size:12px;color:var(--muted);margin-bottom:18px}
-/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:11px;margin-bottom:22px}
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:15px}
 .stat-label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-bottom:5px}
 .stat-val{font-size:27px;font-weight:800;font-family:'DM Mono',monospace}
-.c-green{color:var(--accent)}.c-blue{color:var(--accent2)}.c-yellow{color:var(--warning)}.c-red{color:var(--danger)}
-/* TABLE */
+.c-green{color:var(--accent)}.c-blue{color:var(--accent2)}.c-yellow{color:var(--warning)}.c-red{color:var(--danger)}.c-turq{color:var(--turq)}
 .table-wrap{background:var(--card);border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:18px}
 .table-head{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid var(--border);gap:8px;flex-wrap:wrap}
 .table-title{font-size:13px;font-weight:700}
@@ -51,20 +46,17 @@ th{text-align:left;padding:9px 13px;font-size:10px;font-weight:700;letter-spacin
 td{padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:rgba(255,255,255,.02)}
-/* BADGES */
 .badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;font-family:'DM Mono',monospace}
-.bg{background:rgba(0,229,160,.12);color:var(--accent)}
-.bb{background:rgba(0,153,255,.12);color:var(--accent2)}
-.by{background:rgba(255,176,32,.12);color:var(--warning)}
+.bg{background:rgba(0,229,160,.12);color:var(--green)}
+.bb{background:rgba(20,201,192,.14);color:var(--turq)}
+.by{background:rgba(255,122,61,.14);color:var(--warning)}
 .br{background:rgba(255,64,96,.12);color:var(--danger)}
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:5px;padding:8px 15px;border-radius:7px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .15s;white-space:nowrap}
 .btn-p{background:var(--accent);color:#000}.btn-p:hover{background:#00ffb3;transform:translateY(-1px)}
 .btn-s{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.btn-s:hover{border-color:var(--accent);color:var(--accent)}
 .btn-d{background:rgba(255,64,96,.1);color:var(--danger);border:1px solid rgba(255,64,96,.2)}.btn-d:hover{background:rgba(255,64,96,.2)}
 .btn-sm{padding:5px 10px;font-size:11px}
 .icon-btn{padding:6px;border-radius:6px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;font-size:13px;transition:all .15s}.icon-btn:hover{border-color:var(--accent)}
-/* MODAL */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:14px}
 .overlay.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto}
@@ -72,25 +64,20 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .field{margin-bottom:13px}
 .field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;letter-spacing:.5px}
 .field input,.field select,.field textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:8px 11px;color:var(--text);font-family:'Syne',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
-.field input:focus,.field select:focus{border-color:var(--accent)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
 .field select option{background:var(--surface2)}
 .modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:18px}
-/* ALERT */
 .alert{padding:11px 14px;border-radius:9px;font-size:12px;margin-bottom:14px;display:none}
 .alert.show{display:block}
 .a-ok{background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.25);color:var(--accent)}
 .a-err{background:rgba(255,64,96,.1);border:1px solid rgba(255,64,96,.25);color:var(--danger)}
 .a-info{background:rgba(0,153,255,.1);border:1px solid rgba(0,153,255,.25);color:var(--accent2)}
-/* EMPTY */
 .empty{text-align:center;padding:36px 20px;color:var(--muted)}
 .empty .ei{font-size:36px;margin-bottom:9px}
 .empty p{font-size:12px}
-/* ROW ACTIONS */
 .row-acts{display:flex;gap:5px}
-/* SCROLLBAR */
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-/* LOGIN SCREEN */
 .login-screen{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:30px}
 .login-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 32px;text-align:center;max-width:400px;width:100%}
 .login-logo{font-size:42px;margin-bottom:12px}
@@ -98,11 +85,8 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .login-sub{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6}
 .google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px 20px;background:#fff;color:#333;border:none;border-radius:9px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s}
 .google-btn:hover{background:#f0f0f0;transform:translateY(-1px)}
-.google-btn img{width:20px;height:20px}
-/* INFO BOX */
 .info-box{background:rgba(0,153,255,.06);border:1px solid rgba(0,153,255,.15);border-radius:9px;padding:13px;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px}
 .info-box strong{color:var(--accent2)}
-/* MOBILE */
 .mob-nav{display:none}
 @media(max-width:700px){
   .sidebar{display:none}
@@ -116,11 +100,64 @@ tr:hover td{background:rgba(255,255,255,.02)}
   table{font-size:11px}
   td,th{padding:7px 9px}
   .search-inp{width:130px}
+  .op-chips{flex-direction:column}
+  .op-form{padding:16px}
 }
 @media(min-width:701px){.mob-nav{display:none}}
-/* SHEET STATUS BAR */
 .sheet-bar{background:rgba(0,229,160,.06);border-bottom:1px solid rgba(0,229,160,.12);padding:6px 18px;font-size:11px;font-family:'DM Mono',monospace;color:var(--accent);display:none;align-items:center;gap:8px;flex-shrink:0}
 .sheet-bar.show{display:flex}
+/* ── OPERATIVE PANEL (Registro) ── */
+.op-form{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+.op-quick{display:flex;gap:9px;margin-bottom:18px;flex-wrap:wrap}
+.op-chips{display:flex;gap:10px;margin-bottom:16px}
+.op-chip{flex:1;padding:16px 12px;border-radius:11px;border:2px solid var(--border);background:var(--surface2);cursor:pointer;text-align:center;transition:all .15s;user-select:none}
+.op-chip .ci{font-size:22px;display:block;margin-bottom:5px}
+.op-chip .cl{font-size:12px;font-weight:800;letter-spacing:.5px}
+.op-chip .cd{font-size:9px;color:var(--muted);margin-top:2px;font-weight:600}
+.op-chip.sel-sacar{border-color:var(--warning);background:rgba(255,122,61,.1)}
+.op-chip.sel-sacar .cl{color:var(--warning)}
+.op-chip.sel-devolver{border-color:var(--green);background:rgba(0,229,160,.1)}
+.op-chip.sel-devolver .cl{color:var(--green)}
+.op-chip.sel-vender{border-color:var(--turq);background:rgba(20,201,192,.12)}
+.op-chip.sel-vender .cl{color:var(--turq)}
+.op-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.op-grid{grid-template-columns:1fr}}
+/* ── TIMELINE CARDS (Resumen) ── */
+.timeline{display:flex;flex-direction:column;gap:10px}
+.tl-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;display:flex;align-items:center;gap:14px;border-left:4px solid var(--muted);transition:transform .12s}
+.tl-card:hover{transform:translateX(2px)}
+.tl-card.t-sacar{border-left-color:var(--warning)}
+.tl-card.t-devolver{border-left-color:var(--green)}
+.tl-card.t-vender{border-left-color:var(--turq)}
+.tl-body{flex:1;min-width:0}
+.tl-prod{font-size:15px;font-weight:800;margin-bottom:3px}
+.tl-meta{font-size:12px;color:var(--muted)}
+.tl-meta b{color:var(--text);font-weight:700}
+.tl-pill{padding:6px 12px;border-radius:9px;font-size:13px;font-weight:800;font-family:'DM Mono',monospace;white-space:nowrap;text-align:center}
+.tl-pill.p-sacar{background:rgba(255,122,61,.15);color:var(--warning)}
+.tl-pill.p-devolver{background:rgba(0,229,160,.15);color:var(--green)}
+.tl-pill.p-vender{background:rgba(20,201,192,.15);color:var(--turq)}
+.tl-pill small{display:block;font-size:8px;letter-spacing:1px;opacity:.8;font-family:'Syne',sans-serif}
+.tl-actions{display:flex;flex-direction:column;gap:4px}
+/* ── INVENTORY BLOCKS ── */
+.block-title{font-size:14px;font-weight:800;margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.block-title .bdot{width:9px;height:9px;border-radius:50%}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.prod-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;position:relative}
+.prod-card .pc-name{font-size:15px;font-weight:800;margin-bottom:2px}
+.prod-card .pc-model{font-size:11px;color:var(--muted);margin-bottom:12px}
+.prod-card .pc-stock{font-size:34px;font-weight:800;font-family:'DM Mono',monospace;line-height:1}
+.prod-card .pc-stock-label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-top:2px}
+.prod-card .pc-price{position:absolute;top:14px;right:14px;font-size:12px;font-family:'DM Mono',monospace;color:var(--accent)}
+.prod-card .pc-acts{display:flex;gap:5px;margin-top:12px}
+.emp-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:11px}
+.emp-name{font-size:15px;font-weight:800;margin-bottom:11px;display:flex;align-items:center;gap:8px}
+.emp-name .en-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(255,122,61,.14);color:var(--warning);font-family:'DM Mono',monospace}
+.emp-items{display:flex;flex-direction:column;gap:6px}
+.emp-item{display:flex;align-items:center;justify-content:space-between;background:var(--surface2);border-radius:8px;padding:9px 12px}
+.emp-item .ei-name{font-size:13px;font-weight:600}
+.emp-item .ei-model{font-size:10px;color:var(--muted)}
+.emp-item .ei-qty{font-size:14px;font-weight:800;font-family:'DM Mono',monospace;color:var(--warning)}
 </style>
 </head>
 <body>
@@ -143,15 +180,13 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- APP (hidden until logged in) -->
+<!-- APP -->
 <div id="app-screen" style="display:none;flex-direction:column;flex:1;overflow:hidden">
-  <!-- SHEET STATUS BAR -->
   <div class="sheet-bar show" id="sheet-bar">
     <span>📊</span>
     <span>Planilla conectada: <strong id="sheet-name-display">cargando...</strong></span>
     <span style="margin-left:auto;cursor:pointer;opacity:.6" onclick="openSheetInBrowser()">↗ Abrir en Drive</span>
   </div>
-  <!-- TOPBAR -->
   <div class="topbar">
     <div class="logo">⬡ Nexa <span>Inventario</span></div>
     <div class="topbar-right">
@@ -160,46 +195,84 @@ tr:hover td{background:rgba(255,255,255,.02)}
       <button class="btn btn-sm" style="background:rgba(255,64,96,.1);color:var(--danger);border:1px solid rgba(255,64,96,.2)" onclick="signOut()">Salir</button>
     </div>
   </div>
-  <!-- LAYOUT -->
   <div class="layout">
-    <!-- SIDEBAR -->
     <nav class="sidebar">
-      <div class="nav-section">Principal</div>
-      <div class="nav-item active" data-page="dashboard" onclick="nav('dashboard')"><span class="nav-icon">◉</span> Dashboard</div>
-      <div class="nav-item" data-page="productos" onclick="nav('productos')"><span class="nav-icon">▦</span> Productos</div>
+      <div class="nav-section">Operación</div>
+      <div class="nav-item active" data-page="registro" onclick="nav('registro')"><span class="nav-icon">✚</span> Registro</div>
+      <div class="nav-item" data-page="resumen" onclick="nav('resumen')"><span class="nav-icon">⇄</span> Resumen</div>
+      <div class="nav-item" data-page="inventario" onclick="nav('inventario')"><span class="nav-icon">▦</span> Inventario</div>
+      <div class="nav-section">Gestión</div>
+      <div class="nav-item" data-page="productos" onclick="nav('productos')"><span class="nav-icon">⊞</span> Productos</div>
       <div class="nav-item" data-page="personal" onclick="nav('personal')"><span class="nav-icon">◎</span> Personal</div>
-      <div class="nav-section">Operaciones</div>
-      <div class="nav-item" data-page="movimientos" onclick="nav('movimientos')"><span class="nav-icon">⇄</span> Movimientos</div>
-      <div class="nav-item" data-page="asignaciones" onclick="nav('asignaciones')"><span class="nav-icon">⊞</span> Asignaciones</div>
+      <div class="nav-section">Sistema</div>
+      <div class="nav-item" data-page="ajustes" onclick="nav('ajustes')"><span class="nav-icon">⚙</span> Ajustes</div>
     </nav>
 
-    <!-- DASHBOARD -->
-    <div class="main active" id="page-dashboard">
-      <div class="page-title">Dashboard</div>
-      <div class="page-sub">Resumen del inventario en tiempo real</div>
+    <!-- REGISTRO (panel operativo) -->
+    <div class="main active" id="page-registro">
+      <div class="page-title">Registro</div>
+      <div class="page-sub">Panel operativo — registrá cada movimiento aquí</div>
+      <div id="alert-reg" class="alert"></div>
+      <div class="op-form">
+        <div class="op-quick">
+          <button class="btn btn-s" onclick="openAddProduct()">＋ Nuevo Producto</button>
+          <button class="btn btn-s" onclick="openModal('m-add-emp')">＋ Nuevo Personal</button>
+        </div>
+
+        <label style="display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.5px">ACCIÓN A REGISTRAR</label>
+        <div class="op-chips">
+          <div class="op-chip" id="chip-sacar" onclick="selectAction('SACAR')">
+            <span class="ci">⬆</span><span class="cl">SACAR</span><span class="cd">Entregar al personal</span>
+          </div>
+          <div class="op-chip" id="chip-devolver" onclick="selectAction('DEVOLVER')">
+            <span class="ci">♻</span><span class="cl">DEVOLVER</span><span class="cd">Recuperar al almacén</span>
+          </div>
+          <div class="op-chip" id="chip-vender" onclick="selectAction('VENDER')">
+            <span class="ci">🛍</span><span class="cl">VENDER</span><span class="cd">Baja definitiva</span>
+          </div>
+        </div>
+
+        <div class="op-grid">
+          <div class="field"><label>FECHA</label><input id="reg-date" type="date"></div>
+          <div class="field"><label>CANTIDAD</label><input id="reg-qty" type="number" min="1" value="1"></div>
+        </div>
+        <div class="field"><label>PRODUCTO</label><select id="reg-prod"></select></div>
+        <div class="field"><label>PERSONAL</label><select id="reg-emp"></select></div>
+        <div class="field"><label>NOTAS (opcional)</label><input id="reg-notes" placeholder="Observaciones..."></div>
+        <button class="btn btn-p" style="width:100%;justify-content:center;padding:12px;font-size:14px" onclick="submitRegistro()">Registrar Movimiento</button>
+      </div>
+    </div>
+
+    <!-- RESUMEN (timeline) -->
+    <div class="main" id="page-resumen">
+      <div class="page-title">Resumen</div>
+      <div class="page-sub">Historial y auditoría de movimientos</div>
+      <div style="margin-bottom:14px"><input class="search-inp" style="width:100%;max-width:340px" placeholder="🔍 Buscar en el historial..." oninput="filterTimeline(this.value)"></div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+
+    <!-- INVENTARIO (2 bloques) -->
+    <div class="main" id="page-inventario">
+      <div class="page-title">Inventario</div>
+      <div class="page-sub">Estado del negocio en tiempo real</div>
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-label">PRODUCTOS</div><div class="stat-val c-green" id="s-prods">0</div></div>
-        <div class="stat-card"><div class="stat-label">PERSONAL</div><div class="stat-val c-blue" id="s-pers">0</div></div>
+        <div class="stat-card"><div class="stat-label">PERSONAL ACTIVO</div><div class="stat-val c-blue" id="s-pers">0</div></div>
         <div class="stat-card"><div class="stat-label">MOVS HOY</div><div class="stat-val c-yellow" id="s-movhoy">0</div></div>
         <div class="stat-card"><div class="stat-label">STOCK BAJO</div><div class="stat-val c-red" id="s-bajo">0</div></div>
       </div>
-      <div id="alert-dash" class="alert"></div>
-      <div class="table-wrap">
-        <div class="table-head"><span class="table-title">Últimos Movimientos</span></div>
-        <table><thead><tr><th>Fecha</th><th>Producto</th><th>Acción</th><th>Cant.</th><th>Personal</th></tr></thead>
-        <tbody id="tb-dashmov"></tbody></table>
-      </div>
-      <div class="table-wrap">
-        <div class="table-head"><span class="table-title">⚠ Stock Bajo (≤5 uds)</span></div>
-        <table><thead><tr><th>Producto</th><th>Modelo</th><th>Stock</th></tr></thead>
-        <tbody id="tb-lowstock"></tbody></table>
-      </div>
+
+      <div class="block-title"><span class="bdot" style="background:var(--accent)"></span> Almacén General</div>
+      <div class="prod-grid" id="inv-almacen"></div>
+
+      <div class="block-title" style="margin-top:26px"><span class="bdot" style="background:var(--warning)"></span> Personal Autorizado (Stock Asignado)</div>
+      <div id="inv-personal"></div>
     </div>
 
     <!-- PRODUCTOS -->
     <div class="main" id="page-productos">
       <div class="page-title">Productos</div>
-      <div class="page-sub">Inventario general de artículos</div>
+      <div class="page-sub">Catálogo de artículos</div>
       <div id="alert-prods" class="alert"></div>
       <div class="table-wrap">
         <div class="table-head">
@@ -217,7 +290,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <!-- PERSONAL -->
     <div class="main" id="page-personal">
       <div class="page-title">Personal</div>
-      <div class="page-sub">Empleados / instructores</div>
+      <div class="page-sub">Empleados / promotores</div>
       <div id="alert-pers" class="alert"></div>
       <div class="table-wrap">
         <div class="table-head">
@@ -232,53 +305,42 @@ tr:hover td{background:rgba(255,255,255,.02)}
       </div>
     </div>
 
-    <!-- MOVIMIENTOS -->
-    <div class="main" id="page-movimientos">
-      <div class="page-title">Movimientos</div>
-      <div class="page-sub">Registrar y ver historial</div>
-      <div id="alert-movs" class="alert"></div>
-      <div style="display:flex;gap:9px;margin-bottom:18px;flex-wrap:wrap">
-        <button class="btn btn-s" onclick="openMovement('SACAR')">⬆ Sacar</button>
-        <button class="btn btn-s" onclick="openMovement('DEVOLVER')">⬇ Devolver</button>
-        <button class="btn btn-s" onclick="openMovement('VENDER')">💰 Vender</button>
-      </div>
-      <div class="table-wrap">
-        <div class="table-head">
-          <span class="table-title">Historial</span>
-          <input class="search-inp" placeholder="🔍 Buscar..." oninput="filterTbl('tbl-movs',this.value)">
+    <!-- AJUSTES -->
+    <div class="main" id="page-ajustes">
+      <div class="page-title">Ajustes</div>
+      <div class="page-sub">Respaldo en la nube y sincronización</div>
+      <div id="alert-ajustes" class="alert"></div>
+      <div class="table-wrap" style="padding:18px">
+        <div class="info-box">
+          <strong>Sincronización con Google Sheets</strong><br>
+          Tu inventario se guarda automáticamente en tu planilla de Drive. También podés forzar la sincronización manualmente.
         </div>
-        <table id="tbl-movs"><thead><tr><th>Fecha</th><th>Producto</th><th>Modelo</th><th>Acción</th><th>Cant.</th><th>Personal</th><th>Notas</th></tr></thead>
-        <tbody id="tb-movs"></tbody></table>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px">PLANILLA CONECTADA</div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);word-break:break-all;margin-bottom:18px" id="ajustes-sheet-id"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-p" onclick="syncNow(true)">↑ Exportar a la nube</button>
+          <button class="btn btn-s" onclick="importFromCloud()">↓ Importar desde la nube</button>
+          <button class="btn btn-s" onclick="openSheetInBrowser()">↗ Abrir planilla en Drive</button>
+        </div>
+        <div style="margin-top:16px;font-size:11px;color:var(--muted);line-height:1.6">
+          <strong style="color:var(--text)">Exportar:</strong> manda todo el estado actual (productos, personal y movimientos) a tu planilla.<br>
+          <strong style="color:var(--text)">Importar:</strong> lee la planilla y reemplaza los datos locales con lo que haya en la nube.
+        </div>
       </div>
     </div>
-
-    <!-- ASIGNACIONES -->
-    <div class="main" id="page-asignaciones">
-      <div class="page-title">Asignaciones</div>
-      <div class="page-sub">Productos en posesión del personal</div>
-      <div class="table-wrap">
-        <div class="table-head">
-          <span class="table-title">Asignaciones Activas</span>
-          <input class="search-inp" placeholder="🔍 Buscar..." oninput="filterTbl('tbl-asgn',this.value)">
-        </div>
-        <table id="tbl-asgn"><thead><tr><th>Personal</th><th>Producto</th><th>Modelo</th><th>Cantidad</th></tr></thead>
-        <tbody id="tb-asgn"></tbody></table>
-      </div>
-    </div>
-  </div><!-- /layout -->
+  </div>
 
   <!-- MOBILE NAV -->
   <nav class="mob-nav">
-    <div class="mob-item active" data-page="dashboard" onclick="nav('dashboard')"><span class="mi">◉</span>Inicio</div>
-    <div class="mob-item" data-page="productos" onclick="nav('productos')"><span class="mi">▦</span>Productos</div>
-    <div class="mob-item" data-page="movimientos" onclick="nav('movimientos')"><span class="mi">⇄</span>Mover</div>
-    <div class="mob-item" data-page="personal" onclick="nav('personal')"><span class="mi">◎</span>Personal</div>
-    <div class="mob-item" data-page="asignaciones" onclick="nav('asignaciones')"><span class="mi">⊞</span>Asignados</div>
+    <div class="mob-item active" data-page="registro" onclick="nav('registro')"><span class="mi">✚</span>Registro</div>
+    <div class="mob-item" data-page="resumen" onclick="nav('resumen')"><span class="mi">⇄</span>Resumen</div>
+    <div class="mob-item" data-page="inventario" onclick="nav('inventario')"><span class="mi">▦</span>Inventario</div>
+    <div class="mob-item" data-page="productos" onclick="nav('productos')"><span class="mi">⊞</span>Productos</div>
+    <div class="mob-item" data-page="ajustes" onclick="nav('ajustes')"><span class="mi">⚙</span>Ajustes</div>
   </nav>
-</div><!-- /app-screen -->
+</div>
 
-<!-- ══════════ MODALS ══════════ -->
-<!-- ADD PRODUCT -->
+<!-- MODALS -->
 <div class="overlay" id="m-add-prod">
   <div class="modal">
     <div class="modal-title" id="modal-prod-title">+ Agregar Producto</div>
@@ -295,7 +357,6 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- ADD EMPLOYEE -->
 <div class="overlay" id="m-add-emp">
   <div class="modal">
     <div class="modal-title">+ Agregar Personal</div>
@@ -308,24 +369,6 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- MOVEMENT -->
-<div class="overlay" id="m-movement">
-  <div class="modal">
-    <div class="modal-title" id="m-mov-title">⬆ Sacar del Inventario</div>
-    <input type="hidden" id="mov-action" value="SACAR">
-    <div class="field"><label>PRODUCTO</label><select id="mov-prod"></select></div>
-    <div class="field" id="mov-emp-field"><label>PERSONAL</label><select id="mov-emp"></select></div>
-    <div class="field"><label>CANTIDAD</label><input id="mov-qty" type="number" min="1" value="1"></div>
-    <div class="field"><label>NOTAS</label><input id="mov-notes" placeholder="Observaciones opcionales..."></div>
-    <div id="alert-mmov" class="alert"></div>
-    <div class="modal-actions">
-      <button class="btn btn-s" onclick="closeModal('m-movement')">Cancelar</button>
-      <button class="btn btn-p" onclick="saveMovement()">Registrar</button>
-    </div>
-  </div>
-</div>
-
-<!-- CONFIRM DELETE -->
 <div class="overlay" id="m-confirm">
   <div class="modal" style="max-width:360px">
     <div class="modal-title">⚠ Confirmar</div>
@@ -337,20 +380,13 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- OAUTH POPUP BLOCKER NOTE -->
 <div class="overlay" id="m-oauth-help">
   <div class="modal" style="max-width:420px">
     <div class="modal-title">🔐 Autenticación Google</div>
     <div class="info-box">
-      <strong>¿Cómo funciona la integración?</strong><br><br>
-      Esta app web usa la <strong>API de Google Sheets</strong> para leer y escribir directamente en tu planilla de Drive.<br><br>
-      Para conectar:
-      <ol style="margin:10px 0 0 16px;line-height:1.8">
-        <li>Hacé click en <strong>"Autorizar con Google"</strong></li>
-        <li>Elegí tu cuenta de Google</li>
-        <li>Permití acceso a Google Sheets</li>
-        <li>¡Listo! La app sincroniza automáticamente</li>
-      </ol>
+      <strong>¿Cómo funciona?</strong><br><br>
+      Esta app usa la API de Google Sheets para leer y escribir directamente en tu planilla de Drive.
+      Hacé click en "Autorizar", elegí tu cuenta y permití el acceso.
     </div>
     <div id="gapi-status" class="alert a-info show">Cargando API de Google...</div>
     <div class="modal-actions">
@@ -360,419 +396,173 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
-<!-- ══════════ SCRIPTS ══════════ -->
 <script>
-// ═══════════════════════════════════════
-// CONSTANTS
-// ═══════════════════════════════════════
+// ═══ CONFIG ═══
 const SPREADSHEET_ID = '1KnjVmrL-ZwMx_q_b1uwzuhomUzIx4pr8vk1ccyHP6o0';
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/edit`;
-
-// Google API configuration
-// Using Google's Identity Services + Sheets API v4
+const CLIENT_ID = '992149858690-ieom1l1hc5fie8c283t81kv6ggvlkaj8.apps.googleusercontent.com';
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
+const SHEET_PRODUCTS = 'Productos', SHEET_MOVEMENTS = 'Movimientos', SHEET_EMPLOYEES = 'Personal';
 
-// Sheet tab names (mirrors Android app)
-const SHEET_PRODUCTS  = 'Productos';
-const SHEET_MOVEMENTS = 'Movimientos';
-const SHEET_EMPLOYEES = 'Personal';
-
-// ═══════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════
-let DB = {
-  products:    [],  // {id,name,model,generalStock,price}
-  employees:   [],  // {id,name}
-  assignments: [],  // {employeeId,productId,assignedQuantity}
-  movements:   [],  // {id,date,dateString,employeeId,employeeName,productId,productName,productModel,actionType,quantity,notes}
-  nextPid: 1, nextEid: 1, nextMid: 1
-};
-
-const LSKEY = 'nexa_v2';
+// ═══ STATE ═══
+let DB = { products:[], employees:[], assignments:[], movements:[], nextPid:1, nextEid:1, nextMid:1 };
+const LSKEY = 'nexa_v3';
 function lsSave(){ try{localStorage.setItem(LSKEY,JSON.stringify(DB));}catch(e){} }
-function lsLoad(){
-  try{
-    const d=localStorage.getItem(LSKEY);
-    if(d) DB={...DB,...JSON.parse(d)};
-  }catch(e){}
-}
+function lsLoad(){ try{const d=localStorage.getItem(LSKEY); if(d) DB={...DB,...JSON.parse(d)};}catch(e){} }
 
-// Google auth state
-let gapiReady = false;
-let tokenClient = null;
-let accessToken = null;
-let demoMode = false;
+let gapiReady=false, tokenClient=null, accessToken=null, demoMode=false;
+let selectedAction='SACAR';
 
-// ═══════════════════════════════════════
-// GOOGLE AUTH & API
-// ═══════════════════════════════════════
+// ═══ GOOGLE AUTH ═══
 function loadGoogleLibs(){
-  // Load gapi
   const s1=document.createElement('script');
   s1.src='https://apis.google.com/js/api.js';
-  s1.onload=()=>{ gapi.load('client', initGapiClient); };
+  s1.onload=()=>gapi.load('client',initGapiClient);
   document.head.appendChild(s1);
-
-  // Load Google Identity Services
   const s2=document.createElement('script');
   s2.src='https://accounts.google.com/gsi/client';
   s2.onload=initGIS;
   document.head.appendChild(s2);
 }
-
 async function initGapiClient(){
-  try {
-    await gapi.client.init({
-      discoveryDocs:[DISCOVERY_DOC]
-    });
-    gapiReady = true;
-    checkGapiReady();
-  } catch(e){
-    console.warn('gapi init error:', e);
-    showGapiError('No se pudo conectar con la API de Google. Podés usar modo demo.');
-  }
+  try{ await gapi.client.init({discoveryDocs:[DISCOVERY_DOC]}); gapiReady=true; }
+  catch(e){ console.warn('gapi init:',e); }
 }
-
 function initGIS(){
-  // We need a Client ID for OAuth. Since this is a standalone HTML, we use
-  // the implicit flow via a popup. The Client ID must be set up in Google Cloud Console.
-  // For this app we'll use a token-based approach.
-  // NOTE TO USER: Replace CLIENT_ID with your own Google Cloud Console Client ID
-  const CLIENT_ID = '992149858690-ieom1l1hc5fie8c283t81kv6ggvlkaj8.apps.googleusercontent.com';
-
-  if(CLIENT_ID === '__GOOGLE_CLIENT_ID__'){
-    // No client ID set — use token-based approach via URL redirect
-    showNoClientId();
-    return;
-  }
-
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    callback: (resp) => {
-      if(resp.error){ showAlert('gapi-status','Error de autenticación: '+resp.error,'a-err'); return; }
-      accessToken = resp.access_token;
-      gapi.client.setToken({access_token: accessToken});
+  tokenClient=google.accounts.oauth2.initTokenClient({
+    client_id:CLIENT_ID, scope:SCOPES,
+    callback:(resp)=>{
+      if(resp.error){ setGapiStatus('Error: '+resp.error,'a-err'); return; }
+      accessToken=resp.access_token;
+      sessionStorage.setItem('nexa_token',accessToken);
+      gapi.client.setToken({access_token:accessToken});
       onSignedIn();
     }
   });
-
-  const btn = document.getElementById('btn-authorize');
-  if(btn){ btn.disabled = false; btn.textContent = 'Autorizar con Google'; }
-  setGapiStatus('✓ API lista. Podés autorizar el acceso.', 'a-ok');
+  const btn=document.getElementById('btn-authorize');
+  if(btn){ btn.disabled=false; }
+  setGapiStatus('✓ API lista. Podés autorizar.','a-ok');
 }
+function authorizeGoogle(){ if(!tokenClient){ setGapiStatus('Cargando...','a-info'); return; } tokenClient.requestAccessToken({prompt:'consent'}); }
+function startGoogleLogin(){ openModal('m-oauth-help'); if(gapiReady){ const b=document.getElementById('btn-authorize'); if(b) b.disabled=false; } }
+function onSignedIn(){ closeModal('m-oauth-help'); showApp(); loadFromSheet(); }
+function signOut(){ if(accessToken){ google.accounts.oauth2.revoke(accessToken,()=>{}); accessToken=null; } sessionStorage.removeItem('nexa_token'); demoMode=false; lsSave(); showLogin(); }
+function useDemoMode(){ demoMode=true; showApp(); seedDemo(); renderCurrent(); setSyncStatus('','Demo (sin Google)'); }
+function showLogin(){ document.getElementById('login-screen').style.display='flex'; document.getElementById('app-screen').style.display='none'; }
+function showApp(){ document.getElementById('login-screen').style.display='none'; document.getElementById('app-screen').style.display='flex'; document.getElementById('ajustes-sheet-id').textContent=SPREADSHEET_ID; }
 
-function showNoClientId(){
-  // Show instructions to set up Client ID, but also offer API Key only mode
-  // For read/write we need OAuth. Fall back to showing the setup guide.
-  setGapiStatus('Para sincronizar con Drive necesitás configurar un Client ID de Google Cloud. Ver instrucciones abajo.','a-info');
-  const btn = document.getElementById('btn-authorize');
-  if(btn){
-    btn.disabled = false;
-    btn.textContent = 'Ver instrucciones';
-    btn.onclick = showClientIdInstructions;
-  }
-}
-
-function showClientIdInstructions(){
-  closeModal('m-oauth-help');
-  // Show a special instructions modal
-  showSetupInstructions();
-}
-
-function checkGapiReady(){
-  // Will be called when gapi is ready
-}
-
-function authorizeGoogle(){
-  if(!tokenClient){ showSetupInstructions(); return; }
-  tokenClient.requestAccessToken({prompt:'consent'});
-}
-
-function startGoogleLogin(){
-  // Show the OAuth help modal and start the flow
-  openModal('m-oauth-help');
-  // If gapi already ready, update button
-  if(gapiReady){
-    const btn=document.getElementById('btn-authorize');
-    if(btn) btn.disabled=false;
-  }
-}
-
-function onSignedIn(){
-  closeModal('m-oauth-help');
-  showApp();
-  loadFromSheet();
-}
-
-function signOut(){
-  if(accessToken){
-    google.accounts.oauth2.revoke(accessToken,()=>{});
-    accessToken=null;
-  }
-  demoMode=false;
-  lsSave();
-  showLogin();
-}
-
-function useDemoMode(){
-  demoMode=true;
-  showApp();
-  seedDemo();
-  renderCurrent();
-  setSyncStatus('','Demo (sin Google)');
-}
-
-function showLogin(){
-  document.getElementById('login-screen').style.display='flex';
-  document.getElementById('app-screen').style.display='none';
-}
-
-function showApp(){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('app-screen').style.display='flex';
-}
-
-// ═══════════════════════════════════════
-// GOOGLE SHEETS API CALLS
-// ═══════════════════════════════════════
-
-// Helper: authenticated fetch to Sheets API
+// ═══ SHEETS API ═══
 async function sheetsGet(range){
   const url=`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${encodeURIComponent(range)}`;
   const r=await fetch(url,{headers:{Authorization:'Bearer '+accessToken}});
-  if(!r.ok) throw new Error('Sheets GET error '+r.status+': '+await r.text());
-  return r.json();
+  if(!r.ok) throw new Error('GET '+r.status); return r.json();
 }
-
-async function sheetsUpdate(range, values){
+async function sheetsUpdate(range,values){
   const url=`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${encodeURIComponent(range)}?valueInputOption=USER_ENTERED`;
-  const r=await fetch(url,{
-    method:'PUT',
-    headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},
-    body:JSON.stringify({range,majorDimension:'ROWS',values})
-  });
-  if(!r.ok) throw new Error('Sheets PUT error '+r.status+': '+await r.text());
-  return r.json();
+  const r=await fetch(url,{method:'PUT',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body:JSON.stringify({range,majorDimension:'ROWS',values})});
+  if(!r.ok) throw new Error('PUT '+r.status); return r.json();
 }
-
 async function sheetsClear(range){
   const url=`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${encodeURIComponent(range)}:clear`;
   const r=await fetch(url,{method:'POST',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'}});
-  if(!r.ok) throw new Error('Sheets CLEAR error '+r.status);
-  return r.json();
+  if(!r.ok) throw new Error('CLEAR '+r.status); return r.json();
 }
-
-async function ensureSheetExists(sheetName){
-  // Get sheet metadata
+async function ensureSheetExists(name){
   const url=`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}`;
   const r=await fetch(url,{headers:{Authorization:'Bearer '+accessToken}});
   const data=await r.json();
-  const exists=data.sheets?.some(s=>s.properties.title===sheetName);
+  const exists=data.sheets?.some(s=>s.properties.title===name);
   if(!exists){
-    // Create sheet
-    const url2=`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}:batchUpdate`;
-    await fetch(url2,{
-      method:'POST',
-      headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},
-      body:JSON.stringify({requests:[{addSheet:{properties:{title:sheetName}}}]})
-    });
+    await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}:batchUpdate`,{method:'POST',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body:JSON.stringify({requests:[{addSheet:{properties:{title:name}}}]})});
   }
 }
-
 async function getSpreadsheetTitle(){
-  const url=`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}?fields=properties.title`;
-  const r=await fetch(url,{headers:{Authorization:'Bearer '+accessToken}});
-  const d=await r.json();
-  return d.properties?.title||'Mi Planilla';
+  const r=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}?fields=properties.title`,{headers:{Authorization:'Bearer '+accessToken}});
+  const d=await r.json(); return d.properties?.title||'Mi Planilla';
 }
 
-// ═══════════════════════════════════════
-// LOAD FROM SHEET
-// ═══════════════════════════════════════
+// ═══ LOAD ═══
 async function loadFromSheet(){
   setSyncStatus('syncing','Cargando planilla...');
   try{
     const title=await getSpreadsheetTitle();
     document.getElementById('sheet-name-display').textContent=title;
-
-    // Try reading existing data from all 3 tabs
-    await Promise.allSettled([
-      loadProductsFromSheet(),
-      loadEmployeesFromSheet(),
-      loadMovementsFromSheet()
-    ]);
-
-    lsSave();
-    renderCurrent();
-    setSyncStatus('ok','Cargado '+ fmtTime());
-  }catch(e){
-    console.error('loadFromSheet error:',e);
-    setSyncStatus('error','Error al cargar');
-    showAlert('alert-dash','Error al leer la planilla: '+e.message,'a-err');
-    // Fall back to local data
-    lsLoad();
-    renderCurrent();
-  }
+    await Promise.allSettled([loadProductsFromSheet(),loadEmployeesFromSheet(),loadMovementsFromSheet()]);
+    lsSave(); renderCurrent(); setSyncStatus('ok','Cargado '+fmtTime());
+  }catch(e){ console.error(e); setSyncStatus('error','Error al cargar'); lsLoad(); renderCurrent(); }
 }
-
 async function loadProductsFromSheet(){
   try{
-    const resp=await sheetsGet(SHEET_PRODUCTS+'!A:D');
-    const rows=resp.values||[];
+    const resp=await sheetsGet(SHEET_PRODUCTS+'!A:D'); const rows=resp.values||[];
     if(rows.length<1) return;
-    // Skip header row if it looks like a header
-    const start=rows[0][0]==='Nombre'||rows[0][0]==='NOMBRE'?1:0;
-    DB.products=[];
-    DB.nextPid=1;
-    rows.slice(start).forEach((row,i)=>{
-      if(!row[0]) return;
-      DB.products.push({
-        id:i+1,
-        name:row[0]||'',
-        model:row[1]||'',
-        generalStock:parseInt(row[2])||0,
-        price:parseFloat(row[3])||0
-      });
-      DB.nextPid=i+2;
-    });
-  }catch(e){ console.warn('loadProducts error:',e); }
+    const start=(rows[0][0]==='Nombre'||rows[0][0]==='NOMBRE')?1:0;
+    DB.products=[]; DB.nextPid=1;
+    rows.slice(start).forEach((row,i)=>{ if(!row[0]) return; DB.products.push({id:i+1,name:row[0]||'',model:row[1]||'',generalStock:parseInt(row[2])||0,price:parseFloat(row[3])||0}); DB.nextPid=i+2; });
+  }catch(e){ console.warn('prods:',e); }
 }
-
 async function loadEmployeesFromSheet(){
   try{
-    const resp=await sheetsGet(SHEET_EMPLOYEES+'!A:A');
-    const rows=resp.values||[];
+    const resp=await sheetsGet(SHEET_EMPLOYEES+'!A:A'); const rows=resp.values||[];
     if(rows.length<1) return;
-    const start=rows[0][0]==='Nombre'||rows[0][0]==='NOMBRE'?1:0;
-    DB.employees=[];
-    DB.nextEid=1;
-    rows.slice(start).forEach((row,i)=>{
-      if(!row[0]) return;
-      DB.employees.push({id:i+1,name:row[0]});
-      DB.nextEid=i+2;
-    });
-  }catch(e){ console.warn('loadEmployees error (tab puede no existir):',e); }
+    const start=(rows[0][0]==='Nombre'||rows[0][0]==='NOMBRE')?1:0;
+    DB.employees=[]; DB.nextEid=1;
+    rows.slice(start).forEach((row,i)=>{ if(!row[0]) return; DB.employees.push({id:i+1,name:row[0]}); DB.nextEid=i+2; });
+  }catch(e){ console.warn('emps:',e); }
 }
-
 async function loadMovementsFromSheet(){
   try{
-    const resp=await sheetsGet(SHEET_MOVEMENTS+'!A:G');
-    const rows=resp.values||[];
+    const resp=await sheetsGet(SHEET_MOVEMENTS+'!A:G'); const rows=resp.values||[];
     if(rows.length<1) return;
-    const start=rows[0][0]==='Fecha'||rows[0][0]==='FECHA'?1:0;
-    DB.movements=[];
-    DB.nextMid=1;
-    rows.slice(start).forEach((row,i)=>{
-      if(!row[0]) return;
-      // Fecha | Producto | Modelo | Acción | Cantidad | Personal | Notas
-      const ds=row[0]||'';
-      DB.movements.push({
-        id:i+1,
-        date:new Date(ds).getTime()||Date.now(),
-        dateString:ds,
-        employeeId:null,
-        employeeName:row[5]||'Inventario General',
-        productId:0,
-        productName:row[1]||'',
-        productModel:row[2]||'',
-        actionType:row[3]||'',
-        quantity:parseInt(row[4])||0,
-        notes:row[6]||''
-      });
-      DB.nextMid=i+2;
-    });
-    // Rebuild assignments from movements
+    const start=(rows[0][0]==='Fecha'||rows[0][0]==='FECHA')?1:0;
+    DB.movements=[]; DB.nextMid=1;
+    rows.slice(start).forEach((row,i)=>{ if(!row[0]) return; const ds=row[0]||''; DB.movements.push({id:i+1,date:new Date(ds).getTime()||Date.now(),dateString:ds,employeeId:null,employeeName:row[5]||'Inventario General',productId:0,productName:row[1]||'',productModel:row[2]||'',actionType:row[3]||'',quantity:parseInt(row[4])||0,notes:row[6]||''}); DB.nextMid=i+2; });
     rebuildAssignments();
-  }catch(e){ console.warn('loadMovements error (tab puede no existir):',e); }
+  }catch(e){ console.warn('movs:',e); }
 }
-
-// Rebuild assignments from movement history
 function rebuildAssignments(){
   DB.assignments=[];
-  // Sort movements oldest first
-  const sorted=[...DB.movements].sort((a,b)=>a.date-b.date);
-  sorted.forEach(m=>{
+  [...DB.movements].sort((a,b)=>a.date-b.date).forEach(m=>{
     const emp=DB.employees.find(e=>e.name===m.employeeName);
-    if(!emp) return;
     const prod=DB.products.find(p=>p.name===m.productName);
-    if(!prod) return;
-    const action=m.actionType;
-    if(action==='SACAR'){
-      upsertAsgn(emp.id,prod.id,m.quantity,'+');
-    }else if(action==='DEVOLVER'){
-      upsertAsgn(emp.id,prod.id,m.quantity,'-');
-    }else if(action==='VENDER'){
-      upsertAsgn(emp.id,prod.id,m.quantity,'-');
-    }
+    if(!emp||!prod) return;
+    if(m.actionType==='SACAR') upsertAsgn(emp.id,prod.id,m.quantity,'+');
+    else if(m.actionType==='DEVOLVER') upsertAsgn(emp.id,prod.id,m.quantity,'-');
+    else if(m.actionType==='VENDER') upsertAsgn(emp.id,prod.id,m.quantity,'-');
   });
 }
-
-// ═══════════════════════════════════════
-// SYNC TO SHEET
-// ═══════════════════════════════════════
-let syncTimer=null;
-function scheduleSyncIfOnline(){
-  if(demoMode) return;
-  if(!accessToken) return;
-  if(syncTimer) clearTimeout(syncTimer);
-  syncTimer=setTimeout(()=>syncNow(false),3000);
+async function importFromCloud(){
+  if(demoMode){ showAlert('alert-ajustes','En modo demo no hay nube. Iniciá sesión con Google.','a-err'); return; }
+  if(!accessToken){ showAlert('alert-ajustes','Iniciá sesión con Google primero.','a-err'); return; }
+  setSyncStatus('syncing','Importando...');
+  await loadFromSheet();
+  showAlert('alert-ajustes','✓ Datos importados desde la nube.','a-ok');
 }
 
+// ═══ SYNC ═══
+let syncTimer=null;
+function scheduleSyncIfOnline(){ if(demoMode||!accessToken) return; if(syncTimer) clearTimeout(syncTimer); syncTimer=setTimeout(()=>syncNow(false),3000); }
 async function syncNow(manual=false){
-  if(demoMode){ setSyncStatus('','Demo (sin sync)'); return; }
+  if(demoMode){ setSyncStatus('','Demo (sin sync)'); if(manual) showAlert('alert-ajustes','En modo demo no se sincroniza. Iniciá sesión con Google.','a-err'); return; }
   if(!accessToken){ setSyncStatus('error','Sin autenticación'); return; }
   setSyncStatus('syncing','Sincronizando...');
   try{
-    // Ensure tabs exist
-    await ensureSheetExists(SHEET_PRODUCTS);
-    await ensureSheetExists(SHEET_EMPLOYEES);
-    await ensureSheetExists(SHEET_MOVEMENTS);
-
-    // Write products
-    const prodData=[
-      ['Nombre','Modelo','Stock General','Precio'],
-      ...DB.products.map(p=>[p.name,p.model,p.generalStock,p.price])
-    ];
-    await sheetsClear(SHEET_PRODUCTS+'!A:Z');
-    await sheetsUpdate(SHEET_PRODUCTS+'!A1',prodData);
-
-    // Write employees
-    const empData=[
-      ['Nombre'],
-      ...DB.employees.map(e=>[e.name])
-    ];
-    await sheetsClear(SHEET_EMPLOYEES+'!A:Z');
-    await sheetsUpdate(SHEET_EMPLOYEES+'!A1',empData);
-
-    // Write movements (newest first)
+    await ensureSheetExists(SHEET_PRODUCTS); await ensureSheetExists(SHEET_EMPLOYEES); await ensureSheetExists(SHEET_MOVEMENTS);
+    const prodData=[['Nombre','Modelo','Stock General','Precio'],...DB.products.map(p=>[p.name,p.model,p.generalStock,p.price])];
+    await sheetsClear(SHEET_PRODUCTS+'!A:Z'); await sheetsUpdate(SHEET_PRODUCTS+'!A1',prodData);
+    const empData=[['Nombre'],...DB.employees.map(e=>[e.name])];
+    await sheetsClear(SHEET_EMPLOYEES+'!A:Z'); await sheetsUpdate(SHEET_EMPLOYEES+'!A1',empData);
     const sorted=[...DB.movements].sort((a,b)=>b.date-a.date);
-    const movData=[
-      ['Fecha','Producto','Modelo','Acción','Cantidad','Personal','Notas'],
-      ...sorted.map(m=>[m.dateString,m.productName,m.productModel,m.actionType,m.quantity,m.employeeName,m.notes])
-    ];
-    await sheetsClear(SHEET_MOVEMENTS+'!A:Z');
-    await sheetsUpdate(SHEET_MOVEMENTS+'!A1',movData);
-
-    lsSave();
-    setSyncStatus('ok','Sincronizado '+fmtTime());
-    if(manual) showAlert('alert-dash','✓ Datos sincronizados con Google Sheets','a-ok');
-  }catch(e){
-    console.error('syncNow error:',e);
-    setSyncStatus('error','Error: '+e.message.slice(0,40));
-    if(manual) showAlert('alert-dash','Error al sincronizar: '+e.message,'a-err');
-  }
+    const movData=[['Fecha','Producto','Modelo','Acción','Cantidad','Personal','Notas'],...sorted.map(m=>[m.dateString,m.productName,m.productModel,m.actionType,m.quantity,m.employeeName,m.notes])];
+    await sheetsClear(SHEET_MOVEMENTS+'!A:Z'); await sheetsUpdate(SHEET_MOVEMENTS+'!A1',movData);
+    lsSave(); setSyncStatus('ok','Sincronizado '+fmtTime());
+    if(manual) showAlert('alert-ajustes','✓ Exportado a Google Sheets.','a-ok');
+  }catch(e){ console.error(e); setSyncStatus('error','Error'); if(manual) showAlert('alert-ajustes','Error: '+e.message,'a-err'); }
 }
+function openSheetInBrowser(){ window.open(SHEET_URL,'_blank'); }
 
-function openSheetInBrowser(){
-  window.open(SHEET_URL,'_blank');
-}
-
-// ═══════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════
-let currentPage='dashboard';
+// ═══ NAV ═══
+let currentPage='registro';
 function nav(page){
   currentPage=page;
   document.querySelectorAll('.main').forEach(el=>el.classList.remove('active'));
@@ -782,48 +572,129 @@ function nav(page){
 }
 function renderCurrent(){ renderPage(currentPage); }
 function renderPage(p){
-  if(p==='dashboard') renderDash();
+  if(p==='registro') renderRegistro();
+  else if(p==='resumen') renderTimeline();
+  else if(p==='inventario') renderInventario();
   else if(p==='productos') renderProds();
   else if(p==='personal') renderPers();
-  else if(p==='movimientos') renderMovs();
-  else if(p==='asignaciones') renderAsgn();
+  else if(p==='ajustes'){ document.getElementById('ajustes-sheet-id').textContent=SPREADSHEET_ID; }
 }
 
-// ═══════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════
+// ═══ HELPERS ═══
 function todayStr(){ return new Date().toISOString().split('T')[0]; }
 function fmtTime(){ return new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}); }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function esc2(s){ return String(s||'').replace(/'/g,"\\'"); }
+function erow(c,m){ return `<tr><td colspan="${c}"><div class="empty"><div class="ei">○</div><p>${m}</p></div></td></tr>`; }
 
-function renderDash(){
-  const tod=todayStr();
-  const movHoy=DB.movements.filter(m=>m.dateString===tod);
-  const low=DB.products.filter(p=>p.generalStock<=5);
-  document.getElementById('s-prods').textContent=DB.products.length;
-  document.getElementById('s-pers').textContent=DB.employees.length;
-  document.getElementById('s-movhoy').textContent=movHoy.length;
-  document.getElementById('s-bajo').textContent=low.length;
-
-  const recent=[...DB.movements].sort((a,b)=>b.date-a.date).slice(0,10);
-  const tb1=document.getElementById('tb-dashmov');
-  tb1.innerHTML=recent.length?recent.map(m=>`
-    <tr>
-      <td><code style="font-size:11px">${m.dateString}</code></td>
-      <td>${esc(m.productName)}</td>
-      <td><span class="badge ${abadge(m.actionType)}">${m.actionType}</span></td>
-      <td><strong>${m.quantity}</strong></td>
-      <td>${esc(m.employeeName)}</td>
-    </tr>`).join(''):erow(5,'Sin movimientos registrados');
-
-  const tb2=document.getElementById('tb-lowstock');
-  tb2.innerHTML=low.length?low.map(p=>`
-    <tr>
-      <td>${esc(p.name)}</td>
-      <td style="color:var(--muted)">${esc(p.model)}</td>
-      <td><span class="c-red" style="font-weight:700">${p.generalStock}</span></td>
-    </tr>`).join(''):erow(3,'✓ Todo en orden, sin stock bajo');
+// ═══ REGISTRO (operative panel) ═══
+function selectAction(type){
+  selectedAction=type;
+  ['sacar','devolver','vender'].forEach(t=>{
+    document.getElementById('chip-'+t).className='op-chip'+(t===type.toLowerCase()?' sel-'+t:'');
+  });
+  // Refresh employee selector: SACAR requires employee
+  const empSel=document.getElementById('reg-emp');
+  const genOpt=type==='SACAR'?'':'<option value="">Sin Asignar (Inventario General / Venta)</option>';
+  empSel.innerHTML=genOpt+DB.employees.map(e=>`<option value="${e.id}">${esc(e.name)}</option>`).join('');
+}
+function renderRegistro(){
+  const dateInp=document.getElementById('reg-date');
+  if(!dateInp.value) dateInp.value=todayStr();
+  const prodSel=document.getElementById('reg-prod');
+  prodSel.innerHTML=DB.products.length?DB.products.map(p=>`<option value="${p.id}">${esc(p.name)} — ${esc(p.model)} (stock: ${p.generalStock})</option>`).join(''):'<option value="">Sin productos</option>';
+  selectAction(selectedAction);
+}
+function submitRegistro(){
+  const action=selectedAction;
+  const prodId=parseInt(document.getElementById('reg-prod').value);
+  const empRaw=document.getElementById('reg-emp').value;
+  const empId=empRaw?parseInt(empRaw):null;
+  const qty=parseInt(document.getElementById('reg-qty').value)||0;
+  const notes=document.getElementById('reg-notes').value.trim();
+  const dateVal=document.getElementById('reg-date').value||todayStr();
+  if(!prodId){ showAlert('alert-reg','Seleccioná un producto.','a-err'); return; }
+  if(qty<=0){ showAlert('alert-reg','La cantidad debe ser mayor que cero.','a-err'); return; }
+  if(action==='SACAR'&&!empId){ showAlert('alert-reg','Debés seleccionar personal para SACAR.','a-err'); return; }
+  const err=doMovement(empId,action,prodId,qty,notes,dateVal);
+  if(err){ showAlert('alert-reg',err,'a-err'); return; }
+  showAlert('alert-reg','✓ Movimiento registrado con éxito.','a-ok');
+  document.getElementById('reg-qty').value=1;
+  document.getElementById('reg-notes').value='';
+  renderRegistro();
+  scheduleSyncIfOnline();
 }
 
+// ═══ TIMELINE (Resumen) ═══
+function renderTimeline(){
+  const sorted=[...DB.movements].sort((a,b)=>b.date-a.date);
+  const tl=document.getElementById('timeline');
+  if(!sorted.length){ tl.innerHTML='<div class="empty"><div class="ei">○</div><p>Sin movimientos registrados</p></div>'; return; }
+  tl.innerHTML=sorted.map(m=>{
+    const t=m.actionType.toLowerCase();
+    const pill=pillFor(m.actionType,m.quantity);
+    return `<div class="tl-card t-${t}" data-search="${esc((m.productName+' '+m.employeeName+' '+m.actionType+' '+m.dateString+' '+m.notes).toLowerCase())}">
+      <div class="tl-body">
+        <div class="tl-prod">${esc(m.productName)} ${m.productModel?`<span style="font-size:11px;color:var(--muted);font-weight:600">· ${esc(m.productModel)}</span>`:''}</div>
+        <div class="tl-meta"><b>${esc(m.employeeName)}</b> · ${m.dateString}${m.notes?` · ${esc(m.notes)}`:''}</div>
+      </div>
+      <div class="tl-pill p-${t}"><small>${pill.label}</small>${pill.val}</div>
+    </div>`;
+  }).join('');
+}
+function pillFor(action,qty){
+  if(action==='SACAR') return {label:'RETIRO',val:'-'+qty};
+  if(action==='DEVOLVER') return {label:'RETORNO',val:'+'+qty};
+  if(action==='VENDER') return {label:'VENTA',val:'-'+qty};
+  return {label:action,val:qty};
+}
+function filterTimeline(q){
+  const query=q.toLowerCase();
+  document.querySelectorAll('#timeline .tl-card').forEach(c=>{
+    c.style.display=(c.dataset.search||'').includes(query)?'':'none';
+  });
+}
+
+// ═══ INVENTARIO (2 bloques) ═══
+function renderInventario(){
+  const tod=todayStr();
+  document.getElementById('s-prods').textContent=DB.products.length;
+  const activeEmps=new Set(DB.assignments.filter(a=>a.assignedQuantity>0).map(a=>a.employeeId));
+  document.getElementById('s-pers').textContent=activeEmps.size;
+  document.getElementById('s-movhoy').textContent=DB.movements.filter(m=>m.dateString===tod).length;
+  document.getElementById('s-bajo').textContent=DB.products.filter(p=>p.generalStock<=5).length;
+
+  // Bloque A
+  const alm=document.getElementById('inv-almacen');
+  alm.innerHTML=DB.products.length?DB.products.map(p=>`
+    <div class="prod-card">
+      <div class="pc-price">$${Number(p.price).toFixed(2)}</div>
+      <div class="pc-name">${esc(p.name)}</div>
+      <div class="pc-model">${esc(p.model)}</div>
+      <div class="pc-stock ${p.generalStock<=5?'c-red':'c-green'}">${p.generalStock}</div>
+      <div class="pc-stock-label">STOCK GENERAL</div>
+      <div class="pc-acts">
+        <button class="icon-btn" title="Editar" onclick="editProd(${p.id})">✎</button>
+        <button class="icon-btn" title="Eliminar" onclick="confirmDel('producto',${p.id},'${esc2(p.name)}')">✕</button>
+      </div>
+    </div>`).join(''):'<div class="empty"><div class="ei">○</div><p>Sin productos en el almacén</p></div>';
+
+  // Bloque B
+  const perDiv=document.getElementById('inv-personal');
+  const empsWithStock=DB.employees.filter(e=>DB.assignments.some(a=>a.employeeId===e.id&&a.assignedQuantity>0));
+  perDiv.innerHTML=empsWithStock.length?empsWithStock.map(e=>{
+    const items=DB.assignments.filter(a=>a.employeeId===e.id&&a.assignedQuantity>0);
+    const total=items.reduce((s,a)=>s+a.assignedQuantity,0);
+    return `<div class="emp-block">
+      <div class="emp-name">${esc(e.name)} <span class="en-badge">${total} items</span></div>
+      <div class="emp-items">
+        ${items.map(a=>{ const prod=DB.products.find(p=>p.id===a.productId); if(!prod) return ''; return `<div class="emp-item"><div><div class="ei-name">${esc(prod.name)}</div><div class="ei-model">${esc(prod.model)}</div></div><div class="ei-qty">${a.assignedQuantity}</div></div>`; }).join('')}
+      </div>
+    </div>`;
+  }).join(''):'<div class="empty"><div class="ei">○</div><p>Nadie tiene stock asignado actualmente</p></div>';
+}
+
+// ═══ PRODUCTS ═══
 function renderProds(){
   const tb=document.getElementById('tb-prods');
   tb.innerHTML=DB.products.length?DB.products.map(p=>`
@@ -832,214 +703,85 @@ function renderProds(){
       <td style="color:var(--muted)">${esc(p.model)}</td>
       <td><span class="${p.generalStock<=5?'c-red':'c-green'}" style="font-weight:600">${p.generalStock}</span></td>
       <td style="font-family:'DM Mono',monospace">$${Number(p.price).toFixed(2)}</td>
-      <td><div class="row-acts">
-        <button class="icon-btn" title="Editar" onclick="editProd(${p.id})">✎</button>
-        <button class="icon-btn" title="Eliminar" onclick="confirmDel('producto',${p.id},'${esc2(p.name)}')">✕</button>
-      </div></td>
+      <td><div class="row-acts"><button class="icon-btn" onclick="editProd(${p.id})">✎</button><button class="icon-btn" onclick="confirmDel('producto',${p.id},'${esc2(p.name)}')">✕</button></div></td>
     </tr>`).join(''):erow(5,'Sin productos. ¡Agregá el primero!');
 }
-
-function renderPers(){
-  const tb=document.getElementById('tb-pers');
-  tb.innerHTML=DB.employees.length?DB.employees.map(e=>{
-    const tot=DB.assignments.filter(a=>a.employeeId===e.id).reduce((s,a)=>s+a.assignedQuantity,0);
-    return `<tr>
-      <td><strong>${esc(e.name)}</strong></td>
-      <td>${tot>0?`<span class="badge by">${tot} items</span>`:'<span style="color:var(--muted)">—</span>'}</td>
-      <td><div class="row-acts">
-        <button class="icon-btn" title="Eliminar" onclick="confirmDel('empleado',${e.id},'${esc2(e.name)}')">✕</button>
-      </div></td>
-    </tr>`;}).join(''):erow(3,'Sin personal registrado.');
-}
-
-function renderMovs(){
-  const sorted=[...DB.movements].sort((a,b)=>b.date-a.date);
-  const tb=document.getElementById('tb-movs');
-  tb.innerHTML=sorted.length?sorted.map(m=>`
-    <tr>
-      <td><code style="font-size:11px">${m.dateString}</code></td>
-      <td>${esc(m.productName)}</td>
-      <td style="color:var(--muted)">${esc(m.productModel)}</td>
-      <td><span class="badge ${abadge(m.actionType)}">${m.actionType}</span></td>
-      <td><strong>${m.quantity}</strong></td>
-      <td>${esc(m.employeeName)}</td>
-      <td style="color:var(--muted);font-size:11px">${esc(m.notes)||'—'}</td>
-    </tr>`).join(''):erow(7,'Sin movimientos.');
-}
-
-function renderAsgn(){
-  const active=DB.assignments.filter(a=>a.assignedQuantity>0);
-  const tb=document.getElementById('tb-asgn');
-  tb.innerHTML=active.length?active.map(a=>{
-    const emp=DB.employees.find(e=>e.id===a.employeeId);
-    const prod=DB.products.find(p=>p.id===a.productId);
-    if(!emp||!prod) return '';
-    return `<tr>
-      <td>${esc(emp.name)}</td>
-      <td>${esc(prod.name)}</td>
-      <td style="color:var(--muted)">${esc(prod.model)}</td>
-      <td><span class="badge by">${a.assignedQuantity}</span></td>
-    </tr>`;
-  }).join(''):erow(4,'Sin asignaciones activas.');
-}
-
-function abadge(t){ return t==='SACAR'?'by':t==='DEVOLVER'?'bg':t==='VENDER'?'bb':''; }
-function erow(c,m){ return `<tr><td colspan="${c}"><div class="empty"><div class="ei">○</div><p>${m}</p></div></td></tr>`; }
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function esc2(s){ return String(s||'').replace(/'/g,"\\'"); }
-
-// ═══════════════════════════════════════
-// PRODUCT CRUD
-// ═══════════════════════════════════════
 function openAddProduct(){
   document.getElementById('modal-prod-title').textContent='+ Agregar Producto';
   document.getElementById('edit-prod-id').value='';
-  ['inp-pname','inp-pmodel','inp-pstock','inp-pprice'].forEach(id=>{ document.getElementById(id).value=''; });
-  clearAlert('alert-mprod');
-  openModal('m-add-prod');
+  ['inp-pname','inp-pmodel','inp-pstock','inp-pprice'].forEach(id=>document.getElementById(id).value='');
+  clearAlert('alert-mprod'); openModal('m-add-prod');
 }
-
 function editProd(id){
   const p=DB.products.find(x=>x.id===id); if(!p) return;
   document.getElementById('modal-prod-title').textContent='✎ Editar Producto';
   document.getElementById('edit-prod-id').value=id;
-  document.getElementById('inp-pname').value=p.name;
-  document.getElementById('inp-pmodel').value=p.model;
-  document.getElementById('inp-pstock').value=p.generalStock;
-  document.getElementById('inp-pprice').value=p.price;
-  clearAlert('alert-mprod');
-  openModal('m-add-prod');
+  document.getElementById('inp-pname').value=p.name; document.getElementById('inp-pmodel').value=p.model;
+  document.getElementById('inp-pstock').value=p.generalStock; document.getElementById('inp-pprice').value=p.price;
+  clearAlert('alert-mprod'); openModal('m-add-prod');
 }
-
 function saveProduct(){
   const name=document.getElementById('inp-pname').value.trim();
   const model=document.getElementById('inp-pmodel').value.trim();
   const stock=parseInt(document.getElementById('inp-pstock').value)||0;
   const price=parseFloat(document.getElementById('inp-pprice').value)||0;
   const editId=document.getElementById('edit-prod-id').value;
-  if(!name||!model){ showAlert('alert-mprod','Nombre y modelo son requeridos.','a-err'); return; }
-  if(stock<0){ showAlert('alert-mprod','El stock no puede ser negativo.','a-err'); return; }
+  if(!name||!model){ showAlert('alert-mprod','Nombre y modelo requeridos.','a-err'); return; }
+  if(stock<0){ showAlert('alert-mprod','Stock no puede ser negativo.','a-err'); return; }
   if(editId){
     const idx=DB.products.findIndex(p=>p.id===parseInt(editId));
     if(idx>=0) DB.products[idx]={...DB.products[idx],name,model,generalStock:stock,price};
   }else{
     const np={id:DB.nextPid++,name,model,generalStock:0,price};
     DB.products.push(np);
-    if(stock>0) doMovement(null,'DEVOLVER',np.id,stock,'Stock inicial');
+    if(stock>0) doMovement(null,'DEVOLVER',np.id,stock,'Stock inicial',todayStr());
   }
-  lsSave();
-  closeModal('m-add-prod');
-  renderProds(); renderDash();
-  scheduleSyncIfOnline();
+  lsSave(); closeModal('m-add-prod'); renderCurrent(); scheduleSyncIfOnline();
 }
 
-// ═══════════════════════════════════════
-// EMPLOYEE CRUD
-// ═══════════════════════════════════════
+// ═══ EMPLOYEES ═══
+function renderPers(){
+  const tb=document.getElementById('tb-pers');
+  tb.innerHTML=DB.employees.length?DB.employees.map(e=>{
+    const tot=DB.assignments.filter(a=>a.employeeId===e.id).reduce((s,a)=>s+a.assignedQuantity,0);
+    return `<tr><td><strong>${esc(e.name)}</strong></td><td>${tot>0?`<span class="badge by">${tot} items</span>`:'<span style="color:var(--muted)">—</span>'}</td><td><div class="row-acts"><button class="icon-btn" onclick="confirmDel('empleado',${e.id},'${esc2(e.name)}')">✕</button></div></td></tr>`;
+  }).join(''):erow(3,'Sin personal registrado.');
+}
 function saveEmployee(){
   const name=document.getElementById('inp-ename').value.trim();
   if(!name){ showAlert('alert-memp','El nombre es requerido.','a-err'); return; }
   DB.employees.push({id:DB.nextEid++,name});
   document.getElementById('inp-ename').value='';
-  lsSave();
-  closeModal('m-add-emp');
-  renderPers(); renderDash();
-  scheduleSyncIfOnline();
+  lsSave(); closeModal('m-add-emp'); renderCurrent(); scheduleSyncIfOnline();
 }
 
-// ═══════════════════════════════════════
-// MOVEMENTS
-// ═══════════════════════════════════════
-function openMovement(type){
-  document.getElementById('mov-action').value=type;
-  const titles={SACAR:'⬆ Sacar del Inventario',DEVOLVER:'⬇ Devolver al Inventario',VENDER:'💰 Registrar Venta'};
-  document.getElementById('m-mov-title').textContent=titles[type];
-
-  const prodSel=document.getElementById('mov-prod');
-  prodSel.innerHTML=DB.products.length
-    ?DB.products.map(p=>`<option value="${p.id}">${esc(p.name)} — ${esc(p.model)} (stock: ${p.generalStock})</option>`).join('')
-    :'<option>Sin productos</option>';
-
-  const empSel=document.getElementById('mov-emp');
-  const genOpt=type==='SACAR'?'':'<option value="">— Inventario General —</option>';
-  empSel.innerHTML=genOpt+DB.employees.map(e=>`<option value="${e.id}">${esc(e.name)}</option>`).join('');
-
-  document.getElementById('mov-qty').value=1;
-  document.getElementById('mov-notes').value='';
-  clearAlert('alert-mmov');
-  openModal('m-movement');
-}
-
-function saveMovement(){
-  const action=document.getElementById('mov-action').value;
-  const prodId=parseInt(document.getElementById('mov-prod').value);
-  const empIdRaw=document.getElementById('mov-emp').value;
-  const empId=empIdRaw?parseInt(empIdRaw):null;
-  const qty=parseInt(document.getElementById('mov-qty').value)||0;
-  const notes=document.getElementById('mov-notes').value.trim();
-  if(!prodId){ showAlert('alert-mmov','Seleccioná un producto.','a-err'); return; }
-  if(qty<=0){ showAlert('alert-mmov','La cantidad debe ser mayor que cero.','a-err'); return; }
-  if(action==='SACAR'&&!empId){ showAlert('alert-mmov','Debés seleccionar un empleado para sacar productos.','a-err'); return; }
-  const err=doMovement(empId,action,prodId,qty,notes);
-  if(err){ showAlert('alert-mmov',err,'a-err'); return; }
-  closeModal('m-movement');
-  renderMovs(); renderProds(); renderAsgn(); renderDash();
-  scheduleSyncIfOnline();
-}
-
-function doMovement(empId,action,prodId,qty,notes){
+// ═══ MOVEMENT ENGINE ═══
+function doMovement(empId,action,prodId,qty,notes,dateVal){
   const prod=DB.products.find(p=>p.id===prodId);
   if(!prod) return 'El producto no existe.';
   if(qty<=0) return 'La cantidad debe ser mayor que cero.';
   const emp=empId?DB.employees.find(e=>e.id===empId):null;
   if(empId&&!emp) return 'El personal no existe.';
   const empName=emp?emp.name:'Inventario General';
-
   if(action==='SACAR'){
-    if(!emp) return 'Debe seleccionar un empleado.';
+    if(!emp) return 'Debe seleccionar personal.';
     if(prod.generalStock<qty) return `Stock insuficiente. Disponible: ${prod.generalStock}`;
-    prod.generalStock-=qty;
-    upsertAsgn(emp.id,prod.id,qty,'+');
+    prod.generalStock-=qty; upsertAsgn(emp.id,prod.id,qty,'+');
   }else if(action==='DEVOLVER'){
-    if(!emp){
-      prod.generalStock+=qty;
-    }else{
-      const cur=getAsgn(emp.id,prod.id);
-      const cq=cur?cur.assignedQuantity:0;
+    if(!emp){ prod.generalStock+=qty; }
+    else{ const cur=getAsgn(emp.id,prod.id); const cq=cur?cur.assignedQuantity:0;
       if(cq<qty) return `${emp.name} solo tiene ${cq} unidades asignadas.`;
-      prod.generalStock+=qty;
-      upsertAsgn(emp.id,prod.id,qty,'-');
-    }
+      prod.generalStock+=qty; upsertAsgn(emp.id,prod.id,qty,'-'); }
   }else if(action==='VENDER'){
-    if(!emp){
-      if(prod.generalStock<qty) return `Stock insuficiente. Disponible: ${prod.generalStock}`;
-      prod.generalStock-=qty;
-    }else{
-      const cur=getAsgn(emp.id,prod.id);
-      const cq=cur?cur.assignedQuantity:0;
-      if(cq>=qty){
-        upsertAsgn(emp.id,prod.id,qty,'-');
-      }else{
-        const rem=qty-cq;
-        if(prod.generalStock<rem) return `Stock insuficiente. Personal: ${cq}, Almacén: ${prod.generalStock}`;
-        if(cq>0) upsertAsgn(emp.id,prod.id,cq,'-');
-        prod.generalStock-=rem;
-      }
-    }
+    if(!emp){ if(prod.generalStock<qty) return `Stock insuficiente. Disponible: ${prod.generalStock}`; prod.generalStock-=qty; }
+    else{ const cur=getAsgn(emp.id,prod.id); const cq=cur?cur.assignedQuantity:0;
+      if(cq>=qty){ upsertAsgn(emp.id,prod.id,qty,'-'); }
+      else{ const rem=qty-cq; if(prod.generalStock<rem) return `Stock insuficiente. Personal: ${cq}, Almacén: ${prod.generalStock}`; if(cq>0) upsertAsgn(emp.id,prod.id,cq,'-'); prod.generalStock-=rem; } }
   }
-
-  const now=Date.now();
-  DB.movements.push({
-    id:DB.nextMid++, date:now,
-    dateString:new Date(now).toISOString().split('T')[0],
-    employeeId:empId, employeeName:empName,
-    productId:prodId, productName:prod.name, productModel:prod.model,
-    actionType:action, quantity:qty, notes:notes||''
-  });
-  lsSave();
-  return null;
+  const ts=new Date(dateVal+'T12:00:00').getTime()||Date.now();
+  DB.movements.push({id:DB.nextMid++,date:ts,dateString:dateVal,employeeId:empId,employeeName:empName,productId:prodId,productName:prod.name,productModel:prod.model,actionType:action,quantity:qty,notes:notes||''});
+  lsSave(); return null;
 }
-
 function getAsgn(eid,pid){ return DB.assignments.find(a=>a.employeeId===eid&&a.productId===pid); }
 function upsertAsgn(eid,pid,qty,op){
   let a=getAsgn(eid,pid);
@@ -1048,148 +790,46 @@ function upsertAsgn(eid,pid,qty,op){
   if(a.assignedQuantity<=0) DB.assignments=DB.assignments.filter(x=>!(x.employeeId===eid&&x.productId===pid));
 }
 
-// ═══════════════════════════════════════
-// DELETE
-// ═══════════════════════════════════════
+// ═══ DELETE ═══
 let _del=null;
 function confirmDel(type,id,name){
   _del={type,id};
   document.getElementById('confirm-msg').textContent=`¿Eliminar ${type} "${name}"? Esta acción no se puede deshacer.`;
-  document.getElementById('confirm-btn').onclick=execDel;
-  openModal('m-confirm');
+  document.getElementById('confirm-btn').onclick=execDel; openModal('m-confirm');
 }
 function execDel(){
   if(!_del) return;
-  if(_del.type==='producto'){
-    DB.products=DB.products.filter(p=>p.id!==_del.id);
-    DB.assignments=DB.assignments.filter(a=>a.productId!==_del.id);
-  }else{
-    DB.employees=DB.employees.filter(e=>e.id!==_del.id);
-    DB.assignments=DB.assignments.filter(a=>a.employeeId!==_del.id);
-  }
-  lsSave();
-  closeModal('m-confirm');
-  renderProds(); renderPers(); renderAsgn(); renderDash();
-  scheduleSyncIfOnline();
+  if(_del.type==='producto'){ DB.products=DB.products.filter(p=>p.id!==_del.id); DB.assignments=DB.assignments.filter(a=>a.productId!==_del.id); }
+  else{ DB.employees=DB.employees.filter(e=>e.id!==_del.id); DB.assignments=DB.assignments.filter(a=>a.employeeId!==_del.id); }
+  lsSave(); closeModal('m-confirm'); renderCurrent(); scheduleSyncIfOnline();
 }
 
-// ═══════════════════════════════════════
-// MODAL HELPERS
-// ═══════════════════════════════════════
+// ═══ MODAL / ALERT ═══
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.overlay').forEach(o=>{
-  o.addEventListener('click',e=>{ if(e.target===o) o.classList.remove('open'); });
-});
-
-// ═══════════════════════════════════════
-// ALERT HELPERS
-// ═══════════════════════════════════════
-function showAlert(id,msg,cls){
-  const el=document.getElementById(id); if(!el) return;
-  el.textContent=msg; el.className=`alert ${cls} show`;
-  setTimeout(()=>{ if(el) el.classList.remove('show'); },5000);
-}
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{ if(e.target===o) o.classList.remove('open'); }));
+function showAlert(id,msg,cls){ const el=document.getElementById(id); if(!el) return; el.textContent=msg; el.className=`alert ${cls} show`; setTimeout(()=>{ if(el) el.classList.remove('show'); },5000); }
 function clearAlert(id){ const el=document.getElementById(id); if(el) el.className='alert'; }
-function setGapiStatus(msg,cls){
-  const el=document.getElementById('gapi-status'); if(!el) return;
-  el.textContent=msg; el.className=`alert ${cls} show`;
-}
+function setGapiStatus(msg,cls){ const el=document.getElementById('gapi-status'); if(!el) return; el.textContent=msg; el.className=`alert ${cls} show`; }
+function setSyncStatus(status,txt){ document.getElementById('sync-dot').className='dot '+status; document.getElementById('sync-txt').textContent=txt; }
+function filterTbl(id,q){ const tbl=document.getElementById(id); if(!tbl) return; tbl.querySelectorAll('tbody tr').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none'); }
 
-// ═══════════════════════════════════════
-// SYNC STATUS
-// ═══════════════════════════════════════
-function setSyncStatus(status,txt){
-  document.getElementById('sync-dot').className='dot '+status;
-  document.getElementById('sync-txt').textContent=txt;
-}
-
-// ═══════════════════════════════════════
-// TABLE FILTER
-// ═══════════════════════════════════════
-function filterTbl(id,q){
-  const tbl=document.getElementById(id); if(!tbl) return;
-  tbl.querySelectorAll('tbody tr').forEach(r=>{ r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none'; });
-}
-
-// ═══════════════════════════════════════
-// DEMO DATA
-// ═══════════════════════════════════════
+// ═══ DEMO ═══
 function seedDemo(){
   if(DB.products.length>0) return;
-  const prods=[
-    {name:'Paleta de Padel',model:'Head Gravity Pro',stock:20,price:180},
-    {name:'Pelotas de Padel',model:'Head Pro X x3',stock:50,price:12},
-    {name:'Grip Overgrip',model:'Wilson Pro Comfort',stock:100,price:3.5},
-    {name:'Muñequera',model:'Adidas Standard',stock:30,price:8},
-    {name:'Bolso de Padel',model:'Bullpadel BPM',stock:5,price:65},
-    {name:'Zapatillas Padel',model:'Asics Gel-Lima',stock:3,price:120},
-  ];
-  prods.forEach(p=>{
-    const np={id:DB.nextPid++,name:p.name,model:p.model,generalStock:0,price:p.price};
-    DB.products.push(np);
-    if(p.stock>0) doMovement(null,'DEVOLVER',np.id,p.stock,'Stock inicial');
-  });
+  const prods=[{name:'Paleta de Padel',model:'Head Gravity Pro',stock:20,price:180},{name:'Pelotas de Padel',model:'Head Pro X x3',stock:50,price:12},{name:'Grip Overgrip',model:'Wilson Pro Comfort',stock:100,price:3.5},{name:'Muñequera',model:'Adidas Standard',stock:30,price:8},{name:'Bolso de Padel',model:'Bullpadel BPM',stock:5,price:65},{name:'Zapatillas Padel',model:'Asics Gel-Lima',stock:3,price:120}];
+  prods.forEach(p=>{ const np={id:DB.nextPid++,name:p.name,model:p.model,generalStock:0,price:p.price}; DB.products.push(np); if(p.stock>0) doMovement(null,'DEVOLVER',np.id,p.stock,'Stock inicial',todayStr()); });
   ['Juan García','María López','Carlos Méndez'].forEach(n=>DB.employees.push({id:DB.nextEid++,name:n}));
-  doMovement(1,'SACAR',1,2,'Clase grupal');
-  doMovement(2,'SACAR',2,4,'Torneo semanal');
+  doMovement(1,'SACAR',1,2,'Clase grupal',todayStr());
+  doMovement(2,'SACAR',2,4,'Torneo semanal',todayStr());
   lsSave();
 }
 
-// ═══════════════════════════════════════
-// SETUP INSTRUCTIONS MODAL (when no Client ID)
-// ═══════════════════════════════════════
-function showSetupInstructions(){
-  // Create a temporary modal explaining how to set up the Google Client ID
-  const existing=document.getElementById('m-setup');
-  if(existing){ openModal('m-setup'); return; }
-
-  const el=document.createElement('div');
-  el.className='overlay';
-  el.id='m-setup';
-  el.innerHTML=`
-  <div class="modal" style="max-width:520px">
-    <div class="modal-title">🔧 Configuración de Google OAuth</div>
-    <div class="info-box" style="line-height:1.8">
-      Para conectar con Google Drive necesitás un <strong>Client ID</strong> de Google Cloud Console (es gratuito):<br><br>
-      <ol style="margin-left:16px">
-        <li>Andá a <strong>console.cloud.google.com</strong></li>
-        <li>Creá un proyecto nuevo</li>
-        <li>Activá la <strong>Google Sheets API</strong></li>
-        <li>En "Credenciales" → "Crear credenciales" → "ID de cliente OAuth 2.0"</li>
-        <li>Tipo: <strong>Aplicación Web</strong></li>
-        <li>Agregá tu dominio en "Orígenes autorizados"</li>
-        <li>Copiá el Client ID y pegalo en el código en la variable <code style="color:var(--accent)">CLIENT_ID</code></li>
-      </ol><br>
-      <strong>O bien:</strong> Descargá este HTML, editá la línea con <code style="color:var(--accent)">__GOOGLE_CLIENT_ID__</code> y reemplazala con tu Client ID.
-    </div>
-    <div class="info-box" style="background:rgba(0,229,160,.05);border-color:rgba(0,229,160,.2)">
-      Tu planilla ya está configurada:<br>
-      <code style="color:var(--accent);word-break:break-all">${SPREADSHEET_ID}</code>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-s" onclick="closeModal('m-setup');useDemoMode()">Usar Demo</button>
-      <button class="btn btn-p" onclick="window.open('https://console.cloud.google.com','_blank')">Abrir Google Cloud →</button>
-    </div>
-  </div>`;
-  el.addEventListener('click',e=>{ if(e.target===el) el.classList.remove('open'); });
-  document.body.appendChild(el);
-  el.classList.add('open');
-}
-
-// ═══════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════
+// ═══ INIT ═══
 lsLoad();
 loadGoogleLibs();
-
-// Check if already have a token in session
 const savedToken=sessionStorage.getItem('nexa_token');
-if(savedToken){
-  accessToken=savedToken;
-  showApp();
-  loadFromSheet();
-}
+if(savedToken){ accessToken=savedToken; showApp(); setTimeout(()=>{ if(gapi&&gapi.client) gapi.client.setToken({access_token:accessToken}); loadFromSheet(); },1500); }
 </script>
 </body>
 </html>
