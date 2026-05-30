@@ -9,7 +9,7 @@
 :root{--bg:#0d0f14;--surface:#151820;--surface2:#1c2030;--border:#252a3a;--accent:#00e5a0;--accent2:#0099ff;--turq:#14c9c0;--danger:#ff4060;--warning:#ff7a3d;--green:#00e5a0;--text:#e8eaf0;--muted:#6b7290;--card:#161b28}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
-body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;height:100vh}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;height:100vh;height:100dvh}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:54px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;gap:10px}
 .logo{font-size:17px;font-weight:800;letter-spacing:-.5px;display:flex;align-items:center;gap:7px}
 .logo span{color:var(--accent)}
@@ -20,7 +20,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);displa
 .dot.syncing{background:var(--warning);animation:blink 1s infinite}
 .dot.error{background:var(--danger)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.layout{display:flex;flex:1;overflow:hidden}
+.layout{display:flex;flex:1;overflow:hidden;min-height:0}
 .sidebar{width:215px;background:var(--surface);border-right:1px solid var(--border);flex-shrink:0;padding:14px 0;display:flex;flex-direction:column}
 .nav-section{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--muted);padding:14px 18px 5px;text-transform:uppercase}
 .nav-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-left:3px solid transparent;transition:all .15s;user-select:none}
@@ -89,12 +89,14 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .info-box strong{color:var(--accent2)}
 .mob-nav{display:none}
 @media(max-width:700px){
+  #app-screen{height:100%;min-height:0}
+  .layout{min-height:0;overflow:hidden}
   .sidebar{display:none}
-  .mob-nav{display:flex;background:var(--surface);border-top:1px solid var(--border);flex-shrink:0}
-  .mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:7px 3px;font-size:9px;font-weight:700;color:var(--muted);cursor:pointer;gap:2px;letter-spacing:.4px;transition:color .15s}
+  .mob-nav{display:flex;background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;position:sticky;bottom:0;z-index:60}
+  .mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 2px;font-size:9px;font-weight:700;color:var(--muted);cursor:pointer;gap:2px;letter-spacing:.3px;transition:color .15s}
   .mob-item.active{color:var(--accent)}
-  .mob-item .mi{font-size:17px}
-  .main{padding:14px}
+  .mob-item .mi{font-size:18px}
+  .main{padding:14px;-webkit-overflow-scrolling:touch}
   .page-title{font-size:17px}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   table{font-size:11px}
@@ -102,6 +104,21 @@ tr:hover td{background:rgba(255,255,255,.02)}
   .search-inp{width:130px}
   .op-chips{flex-direction:column}
   .op-form{padding:16px}
+  /* Topbar: keep on one row, shrink */
+  .topbar{height:auto;min-height:48px;padding:6px 10px;flex-wrap:nowrap}
+  .logo{font-size:14px}
+  .topbar-right{gap:5px;flex-shrink:0}
+  #sync-indicator{display:none}
+  .btn-sm{padding:5px 8px;font-size:10px}
+  /* Sheet bar: compact, allow wrap but small */
+  .sheet-bar{padding:5px 10px;font-size:10px}
+  .sheet-bar span:nth-child(3){display:none}
+  /* Product cards full width pairs */
+  .prod-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:430px){
+  .prod-grid{grid-template-columns:1fr}
+  .logo span{display:none}
 }
 @media(min-width:701px){.mob-nav{display:none}}
 .sheet-bar{background:rgba(0,229,160,.06);border-bottom:1px solid rgba(0,229,160,.12);padding:6px 18px;font-size:11px;font-family:'DM Mono',monospace;color:var(--accent);display:none;align-items:center;gap:8px;flex-shrink:0}
@@ -149,6 +166,8 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .prod-card .pc-stock{font-size:34px;font-weight:800;font-family:'DM Mono',monospace;line-height:1}
 .prod-card .pc-stock-label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-top:2px}
 .prod-card .pc-price{position:absolute;top:14px;right:14px;font-size:12px;font-family:'DM Mono',monospace;color:var(--accent)}
+.prod-card .pc-img{width:100%;height:120px;object-fit:cover;border-radius:9px;margin-bottom:12px;background:var(--surface2);border:1px solid var(--border)}
+.prod-card .pc-img-placeholder{width:100%;height:120px;border-radius:9px;margin-bottom:12px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:32px;opacity:.3}
 .prod-card .pc-acts{display:flex;gap:5px;margin-top:12px}
 .emp-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:11px}
 .emp-name{font-size:15px;font-weight:800;margin-bottom:11px;display:flex;align-items:center;gap:8px}
@@ -158,6 +177,16 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .emp-item .ei-name{font-size:13px;font-weight:600}
 .emp-item .ei-model{font-size:10px;color:var(--muted)}
 .emp-item .ei-qty{font-size:14px;font-weight:800;font-family:'DM Mono',monospace;color:var(--warning)}
+/* ── SEARCHABLE COMBOBOX ── */
+.combo-dropdown{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;max-height:240px;overflow-y:auto;z-index:50;display:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.combo-dropdown.open{display:block}
+.combo-opt{padding:10px 12px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04);transition:background .12s}
+.combo-opt:last-child{border-bottom:none}
+.combo-opt:hover,.combo-opt.hl{background:rgba(0,229,160,.1)}
+.combo-opt .co-name{font-size:13px;font-weight:700}
+.combo-opt .co-meta{font-size:11px;color:var(--muted);margin-top:1px}
+.combo-opt .co-stock{float:right;font-family:'DM Mono',monospace;font-size:11px;color:var(--accent)}
+.combo-empty{padding:14px;text-align:center;color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
@@ -181,7 +210,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
 </div>
 
 <!-- APP -->
-<div id="app-screen" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+<div id="app-screen" style="display:none;flex-direction:column;flex:1;overflow:hidden;min-height:0">
   <div class="sheet-bar show" id="sheet-bar">
     <span>📊</span>
     <span>Planilla conectada: <strong id="sheet-name-display">cargando...</strong></span>
@@ -236,7 +265,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
           <div class="field"><label>FECHA</label><input id="reg-date" type="date"></div>
           <div class="field"><label>CANTIDAD</label><input id="reg-qty" type="number" min="1" value="1"></div>
         </div>
-        <div class="field"><label>PRODUCTO</label><select id="reg-prod"></select></div>
+        <div class="field" style="position:relative">
+          <label>PRODUCTO (escribí para buscar por nombre o modelo)</label>
+          <input id="reg-prod-search" autocomplete="off" placeholder="🔍 Escribí el nombre o modelo..." oninput="filterProdDropdown(this.value)" onfocus="openProdDropdown()">
+          <input type="hidden" id="reg-prod">
+          <div id="reg-prod-dropdown" class="combo-dropdown"></div>
+        </div>
         <div class="field"><label>PERSONAL</label><select id="reg-emp"></select></div>
         <div class="field"><label>NOTAS (opcional)</label><input id="reg-notes" placeholder="Observaciones..."></div>
         <button class="btn btn-p" style="width:100%;justify-content:center;padding:12px;font-size:14px" onclick="submitRegistro()">Registrar Movimiento</button>
@@ -349,6 +383,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="field"><label>MODELO</label><input id="inp-pmodel" placeholder="Ej: Head Gravity Pro"></div>
     <div class="field"><label>STOCK INICIAL / ACTUAL</label><input id="inp-pstock" type="number" min="0" placeholder="0"></div>
     <div class="field"><label>PRECIO ($)</label><input id="inp-pprice" type="number" min="0" step="0.01" placeholder="0.00"></div>
+    <div class="field"><label>IMAGEN DEL PRODUCTO (opcional)</label><input id="inp-pimage" placeholder="Pegá el link de una imagen (https://...)"><div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4">Tip: buscá el producto en Google Imágenes, click derecho → "Copiar dirección de la imagen" y pegala acá.</div></div>
     <div id="alert-mprod" class="alert"></div>
     <div class="modal-actions">
       <button class="btn btn-s" onclick="closeModal('m-add-prod')">Cancelar</button>
@@ -494,11 +529,11 @@ async function loadFromSheet(){
 }
 async function loadProductsFromSheet(){
   try{
-    const resp=await sheetsGet(SHEET_PRODUCTS+'!A:D'); const rows=resp.values||[];
+    const resp=await sheetsGet(SHEET_PRODUCTS+'!A:E'); const rows=resp.values||[];
     if(rows.length<1) return;
     const start=(rows[0][0]==='Nombre'||rows[0][0]==='NOMBRE')?1:0;
     DB.products=[]; DB.nextPid=1;
-    rows.slice(start).forEach((row,i)=>{ if(!row[0]) return; DB.products.push({id:i+1,name:row[0]||'',model:row[1]||'',generalStock:parseInt(row[2])||0,price:parseFloat(row[3])||0}); DB.nextPid=i+2; });
+    rows.slice(start).forEach((row,i)=>{ if(!row[0]) return; DB.products.push({id:i+1,name:row[0]||'',model:row[1]||'',generalStock:parseInt(row[2])||0,price:parseFloat(row[3])||0,image:row[4]||''}); DB.nextPid=i+2; });
   }catch(e){ console.warn('prods:',e); }
 }
 async function loadEmployeesFromSheet(){
@@ -548,7 +583,7 @@ async function syncNow(manual=false){
   setSyncStatus('syncing','Sincronizando...');
   try{
     await ensureSheetExists(SHEET_PRODUCTS); await ensureSheetExists(SHEET_EMPLOYEES); await ensureSheetExists(SHEET_MOVEMENTS);
-    const prodData=[['Nombre','Modelo','Stock General','Precio'],...DB.products.map(p=>[p.name,p.model,p.generalStock,p.price])];
+    const prodData=[['Nombre','Modelo','Stock General','Precio','Imagen'],...DB.products.map(p=>[p.name,p.model,p.generalStock,p.price,p.image||''])];
     await sheetsClear(SHEET_PRODUCTS+'!A:Z'); await sheetsUpdate(SHEET_PRODUCTS+'!A1',prodData);
     const empData=[['Nombre'],...DB.employees.map(e=>[e.name])];
     await sheetsClear(SHEET_EMPLOYEES+'!A:Z'); await sheetsUpdate(SHEET_EMPLOYEES+'!A1',empData);
@@ -601,10 +636,45 @@ function selectAction(type){
 function renderRegistro(){
   const dateInp=document.getElementById('reg-date');
   if(!dateInp.value) dateInp.value=todayStr();
-  const prodSel=document.getElementById('reg-prod');
-  prodSel.innerHTML=DB.products.length?DB.products.map(p=>`<option value="${p.id}">${esc(p.name)} — ${esc(p.model)} (stock: ${p.generalStock})</option>`).join(''):'<option value="">Sin productos</option>';
+  // Reset product search if nothing selected
+  buildProdDropdown('');
   selectAction(selectedAction);
 }
+
+// ── Searchable product combobox ──
+let prodHighlight=-1;
+function buildProdDropdown(query){
+  const dd=document.getElementById('reg-prod-dropdown');
+  const q=(query||'').toLowerCase().trim();
+  const matches=DB.products.filter(p=> !q || p.name.toLowerCase().includes(q) || p.model.toLowerCase().includes(q));
+  if(!DB.products.length){ dd.innerHTML='<div class="combo-empty">No hay productos cargados. Usá "＋ Nuevo Producto".</div>'; return; }
+  if(!matches.length){ dd.innerHTML='<div class="combo-empty">Sin coincidencias para "'+esc(query)+'"</div>'; return; }
+  dd.innerHTML=matches.map((p,i)=>`
+    <div class="combo-opt" data-id="${p.id}" onclick="pickProduct(${p.id})">
+      <span class="co-stock">stock: ${p.generalStock}</span>
+      <div class="co-name">${esc(p.name)}</div>
+      <div class="co-meta">${esc(p.model)} · $${Number(p.price).toFixed(2)}</div>
+    </div>`).join('');
+}
+function openProdDropdown(){ buildProdDropdown(document.getElementById('reg-prod-search').value); document.getElementById('reg-prod-dropdown').classList.add('open'); }
+function filterProdDropdown(val){
+  document.getElementById('reg-prod').value=''; // clear selection while typing
+  buildProdDropdown(val);
+  document.getElementById('reg-prod-dropdown').classList.add('open');
+}
+function pickProduct(id){
+  const p=DB.products.find(x=>x.id===id); if(!p) return;
+  document.getElementById('reg-prod').value=id;
+  document.getElementById('reg-prod-search').value=p.name+' — '+p.model+' (stock: '+p.generalStock+')';
+  document.getElementById('reg-prod-dropdown').classList.remove('open');
+}
+// Close dropdown when clicking outside
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('reg-prod-dropdown');
+  const inp=document.getElementById('reg-prod-search');
+  if(wrap&&inp&&!wrap.contains(e.target)&&e.target!==inp) wrap.classList.remove('open');
+});
+
 function submitRegistro(){
   const action=selectedAction;
   const prodId=parseInt(document.getElementById('reg-prod').value);
@@ -613,7 +683,7 @@ function submitRegistro(){
   const qty=parseInt(document.getElementById('reg-qty').value)||0;
   const notes=document.getElementById('reg-notes').value.trim();
   const dateVal=document.getElementById('reg-date').value||todayStr();
-  if(!prodId){ showAlert('alert-reg','Seleccioná un producto.','a-err'); return; }
+  if(!prodId){ showAlert('alert-reg','Seleccioná un producto de la lista (escribí y hacé click en uno).','a-err'); return; }
   if(qty<=0){ showAlert('alert-reg','La cantidad debe ser mayor que cero.','a-err'); return; }
   if(action==='SACAR'&&!empId){ showAlert('alert-reg','Debés seleccionar personal para SACAR.','a-err'); return; }
   const err=doMovement(empId,action,prodId,qty,notes,dateVal);
@@ -621,6 +691,8 @@ function submitRegistro(){
   showAlert('alert-reg','✓ Movimiento registrado con éxito.','a-ok');
   document.getElementById('reg-qty').value=1;
   document.getElementById('reg-notes').value='';
+  document.getElementById('reg-prod').value='';
+  document.getElementById('reg-prod-search').value='';
   renderRegistro();
   scheduleSyncIfOnline();
 }
@@ -669,6 +741,7 @@ function renderInventario(){
   alm.innerHTML=DB.products.length?DB.products.map(p=>`
     <div class="prod-card">
       <div class="pc-price">$${Number(p.price).toFixed(2)}</div>
+      ${p.image?`<img class="pc-img" src="${esc(p.image)}" alt="${esc(p.name)}" onerror="this.outerHTML='<div class=\\'pc-img-placeholder\\'>📦</div>'">`:'<div class="pc-img-placeholder">📦</div>'}
       <div class="pc-name">${esc(p.name)}</div>
       <div class="pc-model">${esc(p.model)}</div>
       <div class="pc-stock ${p.generalStock<=5?'c-red':'c-green'}">${p.generalStock}</div>
@@ -709,7 +782,7 @@ function renderProds(){
 function openAddProduct(){
   document.getElementById('modal-prod-title').textContent='+ Agregar Producto';
   document.getElementById('edit-prod-id').value='';
-  ['inp-pname','inp-pmodel','inp-pstock','inp-pprice'].forEach(id=>document.getElementById(id).value='');
+  ['inp-pname','inp-pmodel','inp-pstock','inp-pprice','inp-pimage'].forEach(id=>document.getElementById(id).value='');
   clearAlert('alert-mprod'); openModal('m-add-prod');
 }
 function editProd(id){
@@ -718,6 +791,7 @@ function editProd(id){
   document.getElementById('edit-prod-id').value=id;
   document.getElementById('inp-pname').value=p.name; document.getElementById('inp-pmodel').value=p.model;
   document.getElementById('inp-pstock').value=p.generalStock; document.getElementById('inp-pprice').value=p.price;
+  document.getElementById('inp-pimage').value=p.image||'';
   clearAlert('alert-mprod'); openModal('m-add-prod');
 }
 function saveProduct(){
@@ -725,14 +799,15 @@ function saveProduct(){
   const model=document.getElementById('inp-pmodel').value.trim();
   const stock=parseInt(document.getElementById('inp-pstock').value)||0;
   const price=parseFloat(document.getElementById('inp-pprice').value)||0;
+  const image=document.getElementById('inp-pimage').value.trim();
   const editId=document.getElementById('edit-prod-id').value;
   if(!name||!model){ showAlert('alert-mprod','Nombre y modelo requeridos.','a-err'); return; }
   if(stock<0){ showAlert('alert-mprod','Stock no puede ser negativo.','a-err'); return; }
   if(editId){
     const idx=DB.products.findIndex(p=>p.id===parseInt(editId));
-    if(idx>=0) DB.products[idx]={...DB.products[idx],name,model,generalStock:stock,price};
+    if(idx>=0) DB.products[idx]={...DB.products[idx],name,model,generalStock:stock,price,image};
   }else{
-    const np={id:DB.nextPid++,name,model,generalStock:0,price};
+    const np={id:DB.nextPid++,name,model,generalStock:0,price,image};
     DB.products.push(np);
     if(stock>0) doMovement(null,'DEVOLVER',np.id,stock,'Stock inicial',todayStr());
   }
