@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexa Sport · Inventario</title>
+<style>
+  :root{
+    --bg:#0b0d12; --card:#151922; --line:#222836;
+    --txt:#f2f4f8; --muted:#8b93a5; --accent:#00e08a;
+    --pill:#1d2330;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    padding:14px; padding-bottom:40px;
+  }
+  header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  header h1{font-size:18px;font-weight:700;letter-spacing:.3px}
+  header h1 span{color:var(--accent)}
+  .count{margin-left:auto;font-size:12px;color:var(--muted);background:var(--pill);
+    padding:5px 10px;border-radius:20px;white-space:nowrap}
+  .search{
+    width:100%;background:var(--card);border:1px solid var(--line);
+    color:var(--txt);padding:12px 14px;border-radius:12px;font-size:15px;
+    margin-bottom:10px;outline:none;
+  }
+  .search:focus{border-color:var(--accent)}
+  .filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:4px;
+    scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{
+    background:var(--pill);border:1px solid var(--line);color:var(--muted);
+    padding:7px 13px;border-radius:20px;font-size:13px;white-space:nowrap;cursor:pointer;
+    transition:.15s;
+  }
+  .chip.on{background:var(--accent);color:#07120c;border-color:var(--accent);font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;display:flex;flex-direction:column;
+  }
+  .ph{
+    aspect-ratio:1/1;background:#0e1119;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;position:relative;
+  }
+  .ph img{width:100%;height:100%;object-fit:cover}
+  .ph .noimg{color:#39414f;font-size:34px}
+  .body{padding:10px 11px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+  .name{font-size:13.5px;font-weight:600;line-height:1.25}
+  .brand{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .row{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:6px;padding-top:6px}
+  .price{font-size:14px;font-weight:700;color:var(--accent)}
+  .stock{font-size:11px;padding:3px 8px;border-radius:8px;font-weight:600;white-space:nowrap}
+  .s-ok{background:rgba(0,224,138,.12);color:var(--accent)}
+  .s-low{background:rgba(255,193,7,.13);color:#ffc107}
+  .s-out{background:rgba(255,76,76,.13);color:#ff6b6b}
+  .state{text-align:center;color:var(--muted);padding:50px 20px;font-size:14px;grid-column:1/-1}
+  .spin{width:30px;height:30px;border:3px solid var(--line);border-top-color:var(--accent);
+    border-radius:50%;animation:r 1s linear infinite;margin:40px auto}
+  @keyframes r{to{transform:rotate(360deg)}}
+  footer{text-align:center;color:#3a4253;font-size:11px;margin-top:24px}
+</style>
+</head>
+<body>
+  <header>
+    <h1>NEXA <span>SPORT</span> · Inventario</h1>
+    <div class="count" id="count">…</div>
+  </header>
+
+  <input class="search" id="search" placeholder="Buscar producto…" autocomplete="off">
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid">
+    <div class="spin"></div>
+  </div>
+  <footer>Solo lectura · actualizado en tiempo real desde la planilla</footer>
+
+<script>
+const SHEET_ID = "1KnjVmrL-ZwMx_q_b1uwzuhomUzIx4pr8vk1ccyHP6o0";
+const SHEET_NAME = "Productos";
+const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+let ALL = [];
+let brand = "TODAS";
+let term = "";
+
+const grid = document.getElementById("grid");
+const filters = document.getElementById("filters");
+const countEl = document.getElementById("count");
+
+function gs(n){ return new Intl.NumberFormat("es-PY").format(n); }
+
+function stockClass(s){
+  if(s<=0) return ["s-out","Sin stock"];
+  if(s<=2) return ["s-low",s+" u."];
+  return ["s-ok",s+" u."];
+}
+
+function render(){
+  let list = ALL.filter(p=>{
+    const okB = brand==="TODAS" || p.modelo.toUpperCase()===brand;
+    const okT = !term || p.nombre.toLowerCase().includes(term) || p.modelo.toLowerCase().includes(term);
+    return okB && okT;
+  });
+  countEl.textContent = list.length + " items";
+  if(!list.length){ grid.innerHTML = '<div class="state">Sin resultados</div>'; return; }
+  grid.innerHTML = list.map(p=>{
+    const [sc,sl] = stockClass(p.stock);
+    const img = p.img
+      ? `<img src="${p.img}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=&quot;noimg&quot;>🎾</div>'">`
+      : `<div class="noimg">🎾</div>`;
+    return `<div class="card">
+      <div class="ph">${img}</div>
+      <div class="body">
+        <div class="brand">${p.modelo||"—"}</div>
+        <div class="name">${p.nombre}</div>
+        <div class="row">
+          <div class="price">₲ ${gs(p.precio)}</div>
+          <div class="stock ${sc}">${sl}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function buildFilters(){
+  const brands = ["TODAS",...[...new Set(ALL.map(p=>p.modelo.toUpperCase()).filter(Boolean))].sort()];
+  filters.innerHTML = brands.map(b=>
+    `<div class="chip ${b===brand?'on':''}" data-b="${b}">${b}</div>`).join("");
+  filters.querySelectorAll(".chip").forEach(c=>{
+    c.onclick=()=>{ brand=c.dataset.b; buildFilters(); render(); };
+  });
+}
+
+document.getElementById("search").addEventListener("input",e=>{
+  term = e.target.value.trim().toLowerCase(); render();
+});
+
+fetch(URL)
+  .then(r=>r.text())
+  .then(t=>{
+    const json = JSON.parse(t.substring(t.indexOf("{"), t.lastIndexOf("}")+1));
+    const rows = json.table.rows;
+    ALL = rows.map(r=>{
+      const c = r.c;
+      return {
+        nombre: c[0]?.v ?? "",
+        modelo: c[1]?.v ?? "",
+        stock:  Number(c[2]?.v ?? 0),
+        precio: Number(c[3]?.v ?? 0),
+        img:    (c[4]?.v ?? "").toString().trim()
+      };
+    }).filter(p=>p.nombre);
+    buildFilters();
+    render();
+  })
+  .catch(err=>{
+    grid.innerHTML = `<div class="state">No se pudo cargar el inventario.<br><br>
+      Verificá que la planilla esté publicada como pública.<br>
+      <small style="color:#3a4253">${err}</small></div>`;
+  });
+</script>
+</body>
+</html>
